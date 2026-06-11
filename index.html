@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Veterinario - Vet Fast</title>
+    
+    <!-- Fuentes de Google: Montserrat (Títulos) e Inter (Textos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        title: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            900: '#17569b', /* Azul 'VET' del logo */
+                            800: '#12457c',
+                            accent: '#069c64' /* Verde 'FAST' del logo */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        .print-only, .print-only-flex { display: none; }
+
+        /* --- MODO IMPRESIÓN / PDF --- */
+        @media print {
+            @page { size: A4 portrait; margin: 12mm; }
+            body { background-color: white !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            nav, header, footer, .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .print-only-flex { display: flex !important; }
+            #productos-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10mm !important; }
+            main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+            .print-break-avoid { break-inside: avoid !important; page-break-inside: avoid !important; box-shadow: none !important; border: 1.5px solid #e2e8f0 !important; margin-bottom: 0 !important; border-radius: 12px !important; }
+            .img-wrapper { height: 200px !important; padding: 10px !important; background: white !important; }
+            .img-wrapper .absolute.inset-0.z-0 { display: none !important; } /* Ocultar fondo difuminado al imprimir */
+            .print-text-sm { font-size: 10pt !important; line-height: 1.4 !important; }
+            .print-title { font-size: 13pt !important; margin-bottom: 4px !important; }
+            .print-price { font-size: 18pt !important; }
+            .print-card-body { padding: 12px 16px !important; }
+            .print-mt-auto { margin-top: 8px !important; padding-top: 10px !important; }
+        }
+
+        /* --- ESTILOS DEL LIGHTBOX --- */
+        #lightbox { display: none; }
+        #lightbox.active { display: flex; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .lightbox-nav-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(4px); }
+        .lightbox-nav-btn:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-gray-800 antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- --- CABECERA EXCLUSIVA PARA PDF --- -->
+    <div class="print-only-flex items-center justify-between border-b-4 border-brand-accent pb-4 mb-6">
+        <div class="flex items-center gap-4">
+            <div class="w-auto h-16 min-w-[4rem] rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white p-1.5">
+                <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="w-full h-full object-contain rounded-lg" onerror="this.src='https://placehold.co/120x60/ffffff/17569b?text=VF'">
+            </div>
+            <div>
+                <h1 class="font-title font-black text-4xl tracking-tight leading-none"><span class="text-[#17569b]">VET</span><span class="text-[#069c64]">FAST</span></h1>
+                <p class="text-[11px] text-gray-500 uppercase tracking-[0.25em] font-bold mt-1">Salud para tu mascota</p>
+            </div>
+        </div>
+        <div class="text-right">
+            <h2 class="font-title font-extrabold text-2xl text-brand-900">Catálogo de Productos</h2>
+            <p class="text-gray-600 font-medium mt-1 text-sm">WhatsApp: +51 980 764 585</p>
+            <p class="text-gray-600 font-medium text-sm">Instagram: @vet.fast</p>
+        </div>
+    </div>
+
+    <!-- --- NAVEGACIÓN WEB --- -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-4">
+                    <div class="h-12 w-auto min-w-[3rem] rounded-xl overflow-hidden shadow-sm bg-white border border-gray-50 flex items-center justify-center p-1.5">
+                        <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="h-full w-auto object-contain" onerror="this.src='https://placehold.co/120x60/ffffff/17569b?text=VF'">
+                    </div>
+                    <div>
+                        <h1 class="font-title font-black text-2xl tracking-tight leading-none"><span class="text-[#17569b]">VET</span><span class="text-[#069c64]">FAST</span></h1>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-semibold mt-1">Salud para tu mascota</p>
+                    </div>
+                </div>
+                <div class="hidden sm:flex items-center gap-2 no-print">
+                    <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" class="flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[#25D366] transition-colors">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        980 764 585
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --- HERO SECTION WEB --- -->
+    <header class="bg-white border-b border-gray-100 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-3xl">
+                <h2 class="font-title text-4xl md:text-5xl font-extrabold text-brand-900 mb-4 tracking-tight">Catálogo <span class="text-brand-accent">VETERINARIO</span></h2>
+                <p class="text-gray-500 text-lg md:text-xl leading-relaxed font-light">Encuentra los mejores medicamentos y productos para el cuidado, salud y bienestar de tus engreídos, con entrega rápida y segura.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- --- SECCIÓN DE CARACTERÍSTICAS PREMIUM --- -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10 no-print">
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100">
+            <h3 class="font-title text-xl font-bold text-brand-900 mb-6 flex items-center gap-2">
+                <i data-lucide="heart-pulse" class="w-5 h-5 text-brand-accent"></i>
+                Cuidado de Calidad para tu Mascota
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <!-- Feature 1 -->
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Productos Originales</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Trabajamos exclusivamente con laboratorios reconocidos y certificados, garantizando que cada medicamento sea 100% original y seguro.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
+                            <i data-lucide="truck" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Delivery Rápido</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Sabemos que la salud no espera. Ofrecemos entregas rápidas y seguras para que el tratamiento de tu mascota no sufra interrupciones.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
+                            <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Asesoría Veterinaria</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Contamos con personal capacitado dispuesto a guiarte en la elección y correcta administración de los productos para tus engreídos.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
+                            <i data-lucide="package" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Amplio Stock</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Disponibilidad inmediata de una gran variedad de medicinas, antipulgas, vitaminas, suplementos y productos dermatológicos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- NAVEGACIÓN DE CATEGORÍAS (Filtros) --- -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-4 no-print">
+        <div class="flex flex-wrap gap-3 border-b border-gray-200 pb-4" id="category-filters">
+            <!-- Los botones se generarán por JS -->
+        </div>
+    </div>
+
+    <!-- --- GRID DE PRODUCTOS --- -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" id="main-content">
+        <!-- El contenido se renderizará por JS agrupado por categorías -->
+    </main>
+
+    <!-- --- FOOTER --- -->
+    <footer class="bg-brand-900 text-white mt-12 py-16 border-t-[6px] border-brand-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-8">
+                <div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-14 w-auto min-w-[3.5rem] bg-white rounded-xl flex items-center justify-center overflow-hidden p-1.5">
+                            <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="h-full w-auto object-contain" onerror="this.src='https://placehold.co/120x60/ffffff/17569b?text=VF'">
+                        </div>
+                        <div>
+                            <h3 class="font-title text-2xl font-black tracking-wider"><span class="text-white">VET</span><span class="text-[#2ed196]">FAST</span></h3>
+                            <p class="text-gray-300 text-[10px] uppercase tracking-[0.2em] mt-1">Salud para tu mascota</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-200 text-sm leading-relaxed max-w-sm">Tu aliado de confianza en salud animal. Ofrecemos los mejores medicamentos y productos veterinarios con envío rápido a domicilio.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-title text-lg font-bold mb-6 text-white tracking-wide">Contacto Directo</h4>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" class="flex items-center text-gray-200 hover:text-white transition-colors group w-fit">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mr-4 group-hover:bg-[#25D366] transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                                </div>
+                                <span class="font-medium tracking-wide">+51 980 764 585</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-title text-lg font-bold mb-6 text-white tracking-wide">Síguenos</h4>
+                    <div class="flex space-x-4">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/vet.fast/" target="_blank" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] transition-all duration-300 shadow-md" title="Instagram">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12.8 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/profile.php?id=61585898368278" target="_blank" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1877F2] transition-all duration-300 shadow-md" title="Facebook">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-300 text-xs">
+                <p>&copy; <span id="current-year"></span> Vet Fast. Todos los derechos reservados.</p>
+                <p>Catálogo Oficial</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- LIGHTBOX (MODAL DE IMAGEN COMPLETA) --- -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm hidden items-center justify-center" onclick="cerrarModal(event)">
+        <!-- Botón Cerrar -->
+        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2" onclick="cerrarModal(event, true)">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <!-- Flecha Izquierda -->
+        <button id="lightbox-prev" class="lightbox-nav-btn absolute left-4 md:left-10 text-white rounded-full p-3 md:p-4 z-50 transition-all duration-200" onclick="cambiarImagenLightbox(-1, event)">
+            <i data-lucide="chevron-left" class="w-8 h-8"></i>
+        </button>
+
+        <!-- Contenedor de la Imagen -->
+        <div class="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center">
+            <img id="lightbox-img" src="" alt="Vista ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300">
+            
+            <!-- Contador de imágenes -->
+            <div id="lightbox-counter" class="absolute -bottom-10 bg-black/50 text-white/90 px-4 py-1.5 rounded-full text-sm font-medium tracking-wider backdrop-blur-md">
+                1 / 1
+            </div>
+        </div>
+
+        <!-- Flecha Derecha -->
+        <button id="lightbox-next" class="lightbox-nav-btn absolute right-4 md:right-10 text-white rounded-full p-3 md:p-4 z-50 transition-all duration-200" onclick="cambiarImagenLightbox(1, event)">
+            <i data-lucide="chevron-right" class="w-8 h-8"></i>
+        </button>
+    </div>
+
+    <!-- Lógica del Catálogo -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Estructura de productos actualizada con CATEGORÍAS
+        const productos = [
+            // --- LÍNEA MSD ---
+            { 
+                id: 101,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 112.5 MG", 
+                peso: "2KG A 4.5 KG",
+                presentacion: "1 COMP",
+                precio: 93.44, 
+                imagenes: ["assets/brav-112.png"], 
+                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros pequeños." 
+            },
+            { 
+                id: 102,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 250 MG", 
+                peso: "4.5KG A 10 KG",
+                presentacion: "1 COMP",
+                precio: 99.57, 
+                imagenes: ["assets/brav-250.png"], 
+                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros medianos." 
+            },
+            { 
+                id: 103,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 500MG", 
+                peso: "10KG A 20 KG",
+                presentacion: "1 COMP",
+                precio: 105.71, 
+                imagenes: ["assets/brav-500.png"], 
+                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros medianos-grandes." 
+            },
+            { 
+                id: 104,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1000MG", 
+                peso: "20KG A 40 KG",
+                presentacion: "1 COMP",
+                precio: 136.40, 
+                imagenes: ["assets/brav-1000.png"], 
+                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros grandes." 
+            },
+            { 
+                id: 105,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1400MG", 
+                peso: "40KG A 56 KG",
+                presentacion: "1 COMP",
+                precio: 171.99, 
+                imagenes: ["assets/brav-1400.png"], 
+                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros gigantes." 
+            },
+            // BRAVECTO 1M TRIPLE
+            { 
+                id: 106,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1M TRIPLE 25 MG", 
+                peso: "1.27 A 2.5 KG",
+                presentacion: "3 TAB",
+                precio: 104.00, 
+                imagenes: ["assets/brav-1m-25.png"], 
+                descripcion: "Protección mensual en pack de 3 tabletas para perros muy pequeños." 
+            },
+            { 
+                id: 107,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1M TRIPLE 50 MG", 
+                peso: "2.5 A 5 KG",
+                presentacion: "3 TAB",
+                precio: 109.00, 
+                imagenes: ["assets/brav-1m-50.png"], 
+                descripcion: "Protección mensual en pack de 3 tabletas para perros pequeños." 
+            },
+            { 
+                id: 108,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1M TRIPLE 100 MG", 
+                peso: "5 A 10 KG",
+                presentacion: "3 TAB",
+                precio: 116.00, 
+                imagenes: ["assets/brav-1m-100.png"], 
+                descripcion: "Protección mensual en pack de 3 tabletas para perros medianos." 
+            },
+            { 
+                id: 109,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1M TRIPLE 200 MG", 
+                peso: "10 A 20 KG",
+                presentacion: "3 TAB",
+                precio: 124.00, 
+                imagenes: ["assets/brav-1m-200.png"], 
+                descripcion: "Protección mensual en pack de 3 tabletas para perros medianos-grandes." 
+            },
+            { 
+                id: 110,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1M TRIPLE 400 MG", 
+                peso: "20 A 40 KG",
+                presentacion: "3 TAB",
+                precio: 159.00, 
+                imagenes: ["assets/brav-1m-400.png"], 
+                descripcion: "Protección mensual en pack de 3 tabletas para perros grandes." 
+            },
+            { 
+                id: 111,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO 1M TRIPLE 600 MG", 
+                peso: "40 A 60 KG",
+                presentacion: "3 TAB",
+                precio: 201.00, 
+                imagenes: ["assets/brav-1m-600.png"], 
+                descripcion: "Protección mensual en pack de 3 tabletas para perros gigantes." 
+            },
+            // BRAVECTO PLUS (GATOS)
+            { 
+                id: 112,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO PLUS", 
+                peso: "1.2 A 2.8 KG",
+                presentacion: "SPOT ON",
+                precio: 105.28, 
+                imagenes: ["assets/brav-plus-p.png"], 
+                descripcion: "Solución tópica (pipeta) para gatos. Protege contra pulgas, garrapatas y parásitos internos." 
+            },
+            { 
+                id: 113,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO PLUS", 
+                peso: "2.8 A 6.25 KG",
+                presentacion: "SPOT ON",
+                precio: 112.88, 
+                imagenes: ["assets/brav-plus-m.png"], 
+                descripcion: "Solución tópica (pipeta) para gatos medianos. Protege contra pulgas, garrapatas y parásitos internos." 
+            },
+            { 
+                id: 114,
+                categoria: "Línea MSD",
+                nombre: "BRAVECTO PLUS", 
+                peso: "6.25 A 12.5 KG",
+                presentacion: "SPOT ON",
+                precio: 120.69, 
+                imagenes: ["assets/brav-plus-g.png"], 
+                descripcion: "Solución tópica (pipeta) para gatos grandes. Protege contra pulgas, garrapatas y parásitos internos." 
+            },
+
+            // --- LÍNEA VETERLINE (Ejemplos de prueba) ---
+            { 
+                id: 201,
+                categoria: "Línea Veterline",
+                nombre: "Producto Veterline 1", 
+                peso: "Uso general",
+                presentacion: "Frasco 100ml",
+                precio: 45.00, 
+                imagenes: ["https://placehold.co/600x400/ffffff/069c64?text=Veterline+1"], 
+                descripcion: "Descripción del producto de la línea Veterline." 
+            },
+            { 
+                id: 202,
+                categoria: "Línea Veterline",
+                nombre: "Producto Veterline 2", 
+                peso: "Perros y Gatos",
+                presentacion: "Caja x 10 tab",
+                precio: 32.50, 
+                imagenes: ["https://placehold.co/600x400/ffffff/069c64?text=Veterline+2"], 
+                descripcion: "Descripción del segundo producto de la línea Veterline." 
+            }
+        ];
+
+        // Obtener categorías únicas
+        const categorias = ["Todas", ...new Set(productos.map(p => p.categoria))];
+        let categoriaActual = "Todas";
+
+        // Generar botones de filtro
+        const filtersContainer = document.getElementById('category-filters');
+        
+        function renderFilters() {
+            filtersContainer.innerHTML = categorias.map(cat => `
+                <button 
+                    onclick="filtrarPorCategoria('${cat}')"
+                    class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border-2 
+                    ${categoriaActual === cat 
+                        ? 'border-brand-accent bg-brand-accent text-white shadow-md' 
+                        : 'border-gray-200 bg-white text-gray-600 hover:border-brand-accent/50 hover:text-brand-accent'}"
+                >
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        // Función para renderizar el HTML de una tarjeta de producto
+        function generarHTMLProducto(producto) {
+            const mainImgId = `main-img-${producto.id}`;
+            const whatsappText = `Hola, me interesa el producto: ${producto.nombre} (${producto.peso}) - Precio: S/ ${producto.precio.toFixed(2)}`;
+
+            return `
+            <div class="print-break-avoid bg-white rounded-[20px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full group mb-8 print-shadow-none">
+                
+                <!-- Etiqueta de Laboratorio -->
+                <div class="absolute top-4 left-4 z-30 no-print">
+                    <span class="bg-brand-900/90 backdrop-blur text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
+                        ${producto.categoria}
+                    </span>
+                </div>
+
+                <!-- Contenedor de la imagen -->
+                <div id="wrapper-${producto.id}" data-current-index="0" class="img-wrapper relative w-full h-56 sm:h-64 flex items-center justify-center border-b border-gray-100 cursor-pointer group/img bg-white p-6" onclick="abrirModal(${producto.id}, parseInt(this.getAttribute('data-current-index')))">
+
+                    <img 
+                        id="${mainImgId}"
+                        src="${producto.imagenes[0]}" 
+                        alt="${producto.nombre}"
+                        class="w-auto h-auto max-w-full max-h-full object-contain object-center transition-transform duration-700 ease-in-out group-hover/img:scale-105 relative z-10 drop-shadow-sm"
+                        onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Sin+Foto'"
+                    />
+                    
+                    <div class="absolute inset-0 bg-white/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center no-print backdrop-blur-[2px] z-20">
+                        <div class="bg-white p-3 rounded-full shadow-xl transform scale-50 group-hover/img:scale-100 transition-transform duration-300">
+                            <i data-lucide="zoom-in" class="w-6 h-6 text-brand-accent"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miniaturas -->
+                ${producto.imagenes.length > 1 ? `
+                <div class="flex flex-wrap justify-center gap-3 p-3 bg-gray-50/50 border-b border-gray-100 no-print relative z-30">
+                    ${producto.imagenes.map((img, index) => {
+                        return `
+                        <button 
+                            class="w-12 h-12 rounded-lg overflow-hidden border-2 border-transparent hover:border-brand-accent focus:border-brand-accent transition-all duration-200 bg-white shadow-sm cursor-pointer hover:scale-105"
+                            title="Ver Foto ${index + 1}"
+                            onclick="
+                                document.getElementById('${mainImgId}').src='${img}'; 
+                                document.getElementById('wrapper-${producto.id}').setAttribute('data-current-index', '${index}')
+                            "
+                        >
+                            <img src="${img}" alt="Foto ${index + 1}" class="w-full h-full object-contain p-1" onerror="this.src='https://placehold.co/100x100/eeeeee/999999?text=${index + 1}'" />
+                        </button>
+                        `;
+                    }).join('')}
+                </div>
+                ` : ''}
+
+                <!-- Info Card -->
+                <div class="print-card-body p-6 flex flex-col flex-grow bg-white relative z-30">
+                    <h3 class="print-title font-title text-lg font-bold text-brand-900 leading-tight mb-1 group-hover:text-brand-accent transition-colors">${producto.nombre}</h3>
+                    
+                    <!-- Atributos del medicamento -->
+                    <div class="flex flex-wrap gap-2 mb-3 mt-2">
+                        <span class="inline-flex items-center gap-1 bg-blue-50 text-brand-800 text-xs font-semibold px-2.5 py-1 rounded border border-blue-100">
+                            <i data-lucide="scale" class="w-3 h-3"></i> ${producto.peso}
+                        </span>
+                        <span class="inline-flex items-center gap-1 bg-green-50 text-brand-accent text-xs font-semibold px-2.5 py-1 rounded border border-green-100">
+                            <i data-lucide="pill" class="w-3 h-3"></i> ${producto.presentacion}
+                        </span>
+                    </div>
+
+                    <p class="print-text-sm text-gray-500 text-sm leading-relaxed flex-grow text-justify">${producto.descripcion}</p>
+                    
+                    <!-- Precio y Botón de Acción -->
+                    <div class="print-mt-auto flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-gray-400 font-bold tracking-widest uppercase mb-1">Precio</span>
+                            <div class="flex items-start">
+                                <span class="font-title text-sm font-bold text-brand-900 mt-1 mr-1">S/</span>
+                                <span class="print-price font-title text-3xl font-black text-brand-900 tracking-tight">${producto.precio.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        
+                        <a 
+                            href="https://api.whatsapp.com/send?phone=51980764585&text=${encodeURIComponent(whatsappText)}" 
+                            target="_blank" 
+                            class="no-print bg-[#25D366] hover:bg-[#20b858] text-white px-5 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2"
+                            title="Pedir por WhatsApp"
+                        >
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            <span class="font-bold text-sm tracking-wide hidden sm:block">Pedir</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // Renderizado del Grid Principal
+        const mainContainer = document.getElementById('main-content');
+        
+        function renderizarProductos() {
+            renderFilters();
+            
+            // Lógica de filtrado
+            const productosFiltrados = categoriaActual === "Todas" 
+                ? productos 
+                : productos.filter(p => p.categoria === categoriaActual);
+
+            // Agrupar por categoría para mostrarlos en bloques
+            const productosAgrupados = productosFiltrados.reduce((acc, obj) => {
+                const key = obj.categoria;
+                if (!acc[key]) acc[key] = [];
+                acc[key].push(obj);
+                return acc;
+            }, {});
+
+            let htmlCompleto = '';
+
+            for (const [categoria, items] of Object.entries(productosAgrupados)) {
+                // Título de la sección (Laboratorio)
+                htmlCompleto += `
+                    <div class="mb-10 first:mt-0 mt-16 print-break-avoid">
+                        <div class="flex items-center gap-4 mb-6 pb-2 border-b-2 border-brand-accent/20">
+                            <h2 class="font-title text-2xl font-bold text-brand-900">${categoria}</h2>
+                            <span class="bg-gray-100 text-gray-500 text-xs font-bold px-3 py-1 rounded-full">${items.length} productos</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="grid-${categoria.replace(/\s+/g, '-')}">
+                            ${items.map(producto => generarHTMLProducto(producto)).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            mainContainer.innerHTML = htmlCompleto || '<p class="text-center text-gray-500 py-12">No hay productos en esta categoría.</p>';
+            lucide.createIcons(); // Recargar iconos en las nuevas tarjetas
+        }
+
+        // Función global para cambiar filtro
+        window.filtrarPorCategoria = function(categoria) {
+            categoriaActual = categoria;
+            renderizarProductos();
+        };
+
+        // Render inicial
+        renderizarProductos();
+
+
+        // --- FUNCIONES DEL LIGHTBOX (Galería en Pantalla Completa) ---
+        
+        function abrirModal(productoId, startIndex) {
+            currentLightboxProducto = productos.find(p => p.id === productoId);
+            currentLightboxIndex = startIndex;
+            actualizarLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evita que el fondo web haga scroll
+        }
+
+        function cerrarModal(event, forceClose = false) {
+            // Solo cierra si se hace clic en el fondo negro, o en la "X"
+            if (forceClose || event.target.id === 'lightbox') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restaura el scroll web
+                currentLightboxProducto = null;
+            }
+        }
+
+        function cambiarImagenLightbox(direccion, event) {
+            if(event) event.stopPropagation(); // Evita que el clic cierre el modal
+            if (!currentLightboxProducto) return;
+
+            const totalImagenes = currentLightboxProducto.imagenes.length;
+            
+            // Navegación circular
+            currentLightboxIndex += direccion;
+            if (currentLightboxIndex >= totalImagenes) currentLightboxIndex = 0;
+            if (currentLightboxIndex < 0) currentLightboxIndex = totalImagenes - 1;
+
+            actualizarLightbox();
+        }
+
+        function actualizarLightbox() {
+            const imgEl = document.getElementById('lightbox-img');
+            const counterEl = document.getElementById('lightbox-counter');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+
+            // Cargar imagen
+            imgEl.src = currentLightboxProducto.imagenes[currentLightboxIndex];
+            
+            // Actualizar texto del contador (ej: "1 / 3")
+            const total = currentLightboxProducto.imagenes.length;
+            counterEl.textContent = `${currentLightboxIndex + 1} / ${total}`;
+
+            // Ocultar botones y contador si solo hay 1 foto
+            if (total <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                counterEl.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+                counterEl.style.display = 'block';
+            }
+        }
+
+        // Eventos de teclado (Flechas y Escape)
+        document.addEventListener('keydown', function(event) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            
+            if (event.key === 'Escape') cerrarModal(event, true);
+            if (event.key === 'ArrowRight') cambiarImagenLightbox(1);
+            if (event.key === 'ArrowLeft') cambiarImagenLightbox(-1);
+        });
+
+        // Soporte táctil básico para móviles (Swipe)
+        let touchstartX = 0;
+        let touchendX = 0;
+        const lightboxElement = document.getElementById('lightbox');
+
+        lightboxElement.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
+        lightboxElement.addEventListener('touchend', e => { 
+            touchendX = e.changedTouches[0].screenX; 
+            handleSwipe(); 
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Distancia mínima para considerar que es un swipe
+            if (touchendX < touchstartX - swipeThreshold) cambiarImagenLightbox(1); // Swipe Izquierda (Siguiente)
+            if (touchendX > touchstartX + swipeThreshold) cambiarImagenLightbox(-1); // Swipe Derecha (Anterior)
+        }
+
+        // Inicializar iconos
+        lucide.createIcons();
+    </script>
+</body>
+</html>
