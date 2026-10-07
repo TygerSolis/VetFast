@@ -191,7 +191,8 @@ body {
     text-transform: uppercase;
 }
 
-.hero-kicker i {
+.hero-kicker i,
+.hero-kicker svg {
     width: 1rem;
     height: 1rem;
 }
@@ -362,7 +363,8 @@ body {
     box-shadow: 0 16px 32px -20px rgba(6,156,100,.45);
 }
 
-.quick-card i {
+.quick-card i,
+.quick-card svg {
     width: 1.7rem;
     height: 1.7rem;
     color: var(--brand-accent);
@@ -460,19 +462,17 @@ body {
 }
 
 .catalog-toolbar {
-    position: sticky;
-    top: 5rem;
-    z-index: 20;
-    background: rgba(255,255,255,.96);
-    backdrop-filter: blur(14px);
+    position: relative;
+    z-index: 1;
+    background: #fff;
     border-top: 1px solid #f1f5f9;
     border-bottom: 1px solid #e5e7eb;
 }
 
 .catalog-toolbar-inner {
-    max-width: 80rem;
+    width: min(calc(100% - 2rem), 74rem);
     margin: 0 auto;
-    padding: 1.2rem 1rem;
+    padding: 1.5rem 0 1.25rem;
 }
 
 .toolbar-top {
@@ -500,7 +500,8 @@ body {
     width: min(26rem, 100%);
 }
 
-.search-wrap i {
+.search-wrap i,
+.search-wrap svg {
     position: absolute;
     left: 1rem;
     top: 50%;
@@ -598,12 +599,15 @@ body {
 .catalog-main {
     background: #f7fafc;
     border-top: 1px solid #eef2f7;
+    padding: 0 1rem;
 }
 
 .catalog-products-shell {
-    width: min(calc(100% - 2rem), 74rem);
-    margin: 0 auto;
-    padding: 2.75rem 0 5rem;
+    width: 100%;
+    max-width: 74rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem 0 5rem;
 }
 
 .catalog-section {
@@ -645,17 +649,18 @@ body {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 1.35rem;
     align-items: stretch;
 }
 
 .product-card {
+    width: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     min-width: 0;
     border: 1px solid #e6ebf0;
-    border-radius: 1.4rem;
+    border-radius: 1.35rem;
     background: #fff;
     box-shadow: 0 8px 30px -25px rgba(23,86,155,.25);
     transition: transform .25s ease, box-shadow .25s ease;
@@ -668,7 +673,7 @@ body {
 
 .product-media {
     position: relative;
-    height: 15.5rem;
+    height: 16rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -723,7 +728,8 @@ body {
     transition: opacity .2s ease;
 }
 
-.product-expand i {
+.product-expand i,
+.product-expand svg {
     width: 1rem;
     height: 1rem;
 }
@@ -797,7 +803,8 @@ body {
     color: var(--brand-accent);
 }
 
-.product-tags i {
+.product-tags i,
+.product-tags svg {
     width: .85rem;
     height: .85rem;
 }
@@ -871,7 +878,8 @@ body {
     background: #20b858;
 }
 
-.product-buy i {
+.product-buy i,
+.product-buy svg {
     width: 1rem;
     height: 1rem;
 }
@@ -897,7 +905,8 @@ body {
     color: var(--brand-accent);
 }
 
-.empty-icon i {
+.empty-icon i,
+.empty-icon svg {
     width: 2rem;
     height: 2rem;
 }
@@ -1286,7 +1295,8 @@ body {
     font-size: .82rem;
 }
 
-.footer-contact i {
+.footer-contact i,
+.footer-contact svg {
     width: 1rem;
     height: 1rem;
     color: #65d7b0;
@@ -1403,7 +1413,7 @@ body {
 @media (max-width: 1100px) {
     .quick-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
     .products-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .catalog-products-shell { width: min(calc(100% - 2rem), 64rem); }
+    .catalog-products-shell { width: 100%; max-width: 64rem; }
 }
 
 @media (max-width: 900px) {
@@ -1420,7 +1430,8 @@ body {
 @media (max-width: 680px) {
     .section-shell { padding: 4rem 1rem; }
     .catalog-main { padding: 0 .75rem; }
-    .catalog-products-shell { width: 100%; padding: 1.75rem 0 3rem; }
+    .catalog-toolbar-inner { width: 100%; }
+    .catalog-products-shell { width: 100%; max-width: 100%; padding: 1.75rem 0 3rem; }
     .catalog-section { padding-bottom: 0; }
     .catalog-section + .catalog-section { margin-top: 2.25rem; }
     .products-grid { gap: 1rem; }
@@ -1534,4 +1545,46 @@ body {
 
 .print-header {
     display: none;
+}
+
+/* Final catalog polish */
+.search-wrap {
+    min-height: 3.35rem;
+}
+
+.search-wrap input {
+    min-height: 3.35rem;
+}
+
+.search-wrap svg {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+}
+
+.product-tags svg,
+.product-buy svg,
+.product-expand svg {
+    display: block;
+    flex: 0 0 auto;
+}
+
+.catalog-toolbar .sort-control {
+    min-height: 2rem;
+}
+
+@media (min-width: 1200px) {
+    .catalog-products-shell {
+        max-width: 72rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .product-media {
+        height: 16.5rem;
+    }
 }
