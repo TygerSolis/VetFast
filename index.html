@@ -3,938 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Veterinario - Vet Fast</title>
-    
-    <!-- Fuentes de Google: Montserrat (Títulos) e Inter (Textos) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuración de Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        title: ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            900: '#17569b', /* Azul 'VET' del logo */
-                            800: '#12457c',
-                            accent: '#069c64' /* Verde 'FAST' del logo */
-                        }
-                    }
-                }
-            }
+
+    <title>Vet Fast | Catálogo Veterinario para Perros y Mascotas</title>
+    <meta name="description" content="Catálogo de productos veterinarios Vet Fast. Antiparasitarios, medicamentos y productos para el cuidado de perros y mascotas. Consulta disponibilidad y delivery por WhatsApp.">
+    <meta name="theme-color" content="#17569b">
+
+    <meta property="og:title" content="Vet Fast | Catálogo Veterinario">
+    <meta property="og:description" content="Productos veterinarios para el cuidado y bienestar de tu mascota. Consulta disponibilidad por WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/logo-vetfast.png">
+    <meta property="og:locale" content="es_PE">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Vet Fast",
+        "description": "Catálogo de productos veterinarios para el cuidado y bienestar de mascotas, con enfoque principal en perros.",
+        "telephone": "+51 980 764 585",
+        "sameAs": [
+            "https://www.instagram.com/vet.fast/",
+            "https://www.facebook.com/profile.php?id=61585898368278"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+51 980 764 585",
+            "contactType": "sales",
+            "availableLanguage": "es"
         }
+    }
     </script>
-    
-    <!-- Lucide Icons -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css?v=vetfast-2">
+
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        .print-only, .print-only-flex { display: none; }
-
-        /* --- MODO IMPRESIÓN / PDF --- */
-        @media print {
-            @page { size: A4 portrait; margin: 12mm; }
-            body { background-color: white !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            nav, header, footer, .no-print { display: none !important; }
-            .print-only { display: block !important; }
-            .print-only-flex { display: flex !important; }
-            #productos-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 10mm !important; }
-            main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
-            .print-break-avoid { break-inside: avoid !important; page-break-inside: avoid !important; box-shadow: none !important; border: 1.5px solid #e2e8f0 !important; margin-bottom: 0 !important; border-radius: 12px !important; }
-            .img-wrapper { height: 200px !important; padding: 10px !important; background: white !important; }
-            .img-wrapper .absolute.inset-0.z-0 { display: none !important; } /* Ocultar fondo difuminado al imprimir */
-            .print-text-sm { font-size: 10pt !important; line-height: 1.4 !important; }
-            .print-title { font-size: 13pt !important; margin-bottom: 4px !important; }
-            .print-price { font-size: 18pt !important; }
-            .print-card-body { padding: 12px 16px !important; }
-            .print-mt-auto { margin-top: 8px !important; padding-top: 10px !important; }
-        }
-
-        /* --- ESTILOS DEL LIGHTBOX --- */
-        #lightbox { display: none; }
-        #lightbox.active { display: flex; animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .lightbox-nav-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(4px); }
-        .lightbox-nav-btn:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
-    </style>
 </head>
-<body class="bg-[#f8fafc] text-gray-800 antialiased selection:bg-brand-accent selection:text-white">
+<body>
 
-    <!-- --- CABECERA EXCLUSIVA PARA PDF --- -->
-    <div class="print-only-flex items-center justify-between border-b-4 border-brand-accent pb-4 mb-6">
-        <div class="flex items-center gap-4">
-            <div class="w-auto h-16 min-w-[4rem] rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white p-1.5">
-                <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="w-full h-full object-contain rounded-lg" onerror="this.src='https://placehold.co/120x60/ffffff/17569b?text=VF'">
-            </div>
+    <div class="print-header items-center justify-between border-b-2 border-brand-accent pb-4 mb-6">
+        <div class="brand-mark">
+            <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="brand-logo">
             <div>
-                <h1 class="font-title font-black text-4xl tracking-tight leading-none"><span class="text-[#17569b]">VET</span><span class="text-[#069c64]">FAST</span></h1>
-                <p class="text-[11px] text-gray-500 uppercase tracking-[0.25em] font-bold mt-1">Salud para tu mascota</p>
+                <h1 class="font-title font-black text-2xl tracking-tight"><span class="text-[#17569b]">VET</span><span class="text-[#069c64]">FAST</span></h1>
+                <p class="text-[9px] text-gray-500 uppercase tracking-[0.22em] font-bold">Salud y protección para tu mascota</p>
             </div>
         </div>
         <div class="text-right">
-            <h2 class="font-title font-extrabold text-2xl text-brand-900">Catálogo de Productos</h2>
-            <p class="text-gray-600 font-medium mt-1 text-sm">WhatsApp: +51 980 764 585</p>
-            <p class="text-gray-600 font-medium text-sm">Instagram: @vet.fast</p>
+            <strong class="font-title text-xl text-brand-900">Catálogo Veterinario</strong>
+            <p class="text-xs text-gray-500 mt-1">WhatsApp: +51 980 764 585</p>
+            <p class="text-xs text-gray-500">Instagram: @vet.fast</p>
         </div>
     </div>
 
-    <!-- --- NAVEGACIÓN WEB --- -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-gray-100">
+    <div class="announcement-bar no-print">
+        <span>Especial foco en perros</span>
+        <span aria-hidden="true">·</span>
+        <span>Consulta disponibilidad y delivery</span>
+        <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+    </div>
+
+    <nav class="site-nav sticky top-0 z-40 no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center gap-4">
-                    <div class="h-12 w-auto min-w-[3rem] rounded-xl overflow-hidden shadow-sm bg-white border border-gray-50 flex items-center justify-center p-1.5">
-                        <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="h-full w-auto object-contain" onerror="this.src='https://placehold.co/120x60/ffffff/17569b?text=VF'">
-                    </div>
+            <div class="site-nav-inner flex items-center justify-between gap-5">
+                <a href="#inicio" class="brand-mark no-print" aria-label="Vet Fast inicio">
+                    <img src="assets/logo-vetfast.png" alt="Vet Fast" class="brand-logo">
                     <div>
-                        <h1 class="font-title font-black text-2xl tracking-tight leading-none"><span class="text-[#17569b]">VET</span><span class="text-[#069c64]">FAST</span></h1>
-                        <p class="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-semibold mt-1">Salud para tu mascota</p>
+                        <div class="font-title font-black text-2xl leading-none">
+                            <span class="text-[#17569b]">VET</span><span class="text-[#069c64]">FAST</span>
+                        </div>
+                        <div class="text-[9px] text-gray-400 uppercase tracking-[0.18em] font-semibold mt-1">Salud para tu mascota</div>
                     </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-5 text-sm font-semibold text-gray-600">
+                    <a href="#categorias" class="hover:text-brand-accent transition-colors">Explorar</a>
+                    <a href="#destacados" class="hover:text-brand-accent transition-colors">Destacados</a>
+                    <a href="#catalogo" class="hover:text-brand-accent transition-colors">Catálogo</a>
+                    <a href="#como-comprar" class="hover:text-brand-accent transition-colors">Cómo comprar</a>
+                    <a href="#nosotros" class="hover:text-brand-accent transition-colors">Nosotros</a>
+                    <a href="#faq" class="hover:text-brand-accent transition-colors">FAQ</a>
                 </div>
-                <div class="hidden sm:flex items-center gap-2 no-print">
-                    <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" class="flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[#25D366] transition-colors">
-                        <i data-lucide="phone" class="w-4 h-4"></i>
-                        980 764 585
+
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="https://www.instagram.com/vet.fast/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#E1306C] transition-colors" title="Instagram" aria-label="Instagram">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61585898368278" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#1877F2] transition-colors" title="Facebook" aria-label="Facebook">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" rel="noopener noreferrer" class="bg-brand-light text-brand-accent hover:bg-brand-accent hover:text-white px-5 py-2.5 rounded-full text-sm font-bold transition-colors">
+                        WhatsApp
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- --- HERO SECTION WEB --- -->
-    <header class="bg-white border-b border-gray-100 pb-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-            <div class="max-w-3xl">
-                <h2 class="font-title text-4xl md:text-5xl font-extrabold text-brand-900 mb-4 tracking-tight">Catálogo <span class="text-brand-accent">VETERINARIO</span></h2>
-                <p class="text-gray-500 text-lg md:text-xl leading-relaxed font-light">Encuentra los mejores medicamentos y productos para el cuidado, salud y bienestar de tus engreídos, con entrega rápida y segura.</p>
+    <header id="inicio" class="hero no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="hero-grid grid lg:grid-cols-2 gap-12 items-center">
+                <div class="hero-copy">
+                    <span class="hero-kicker"><i data-lucide="paw-print"></i> Cuidado veterinario</span>
+                    <h2 class="font-title font-black hero-title">
+                        Protección y bienestar para tu <span>mejor amigo.</span>
+                    </h2>
+                    <p>
+                        Encuentra medicamentos y productos veterinarios seleccionados para el cuidado de tu mascota, con especial atención a las necesidades de los perros.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button type="button" class="hero-primary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver catálogo</button>
+                        <a class="hero-secondary" href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Consultar disponibilidad
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 mt-7 text-sm text-blue-100">
+                        <span class="inline-flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-[#65d7b0]"></i> Productos veterinarios</span>
+                        <span class="inline-flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4 text-[#65d7b0]"></i> Delivery por coordinación</span>
+                        <span class="inline-flex items-center gap-2"><i data-lucide="stethoscope" class="w-4 h-4 text-[#65d7b0]"></i> Uso responsable</span>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-product">
+                        <img src="assets/brav-500.png" alt="Producto veterinario Bravecto para perros" decoding="async">
+                    </div>
+                    <div class="hero-chip">
+                        <i data-lucide="paw-print"></i>
+                        <div>
+                            <strong class="block text-sm">Enfoque principal</strong>
+                            <span class="text-xs text-gray-500">Cuidado y prevención para perros</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- --- SECCIÓN DE CARACTERÍSTICAS PREMIUM --- -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10 no-print">
-        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100">
-            <h3 class="font-title text-xl font-bold text-brand-900 mb-6 flex items-center gap-2">
-                <i data-lucide="heart-pulse" class="w-5 h-5 text-brand-accent"></i>
-                Cuidado de Calidad para tu Mascota
-            </h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                <!-- Feature 1 -->
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
-                            <i data-lucide="shield-check" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Productos Originales</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Trabajamos exclusivamente con laboratorios reconocidos y certificados, garantizando que cada medicamento sea 100% original y seguro.</p>
-                    </div>
-                </div>
+    <section id="categorias" class="quick-section no-print">
+        <div class="section-shell">
+            <div class="max-w-2xl">
+                <span class="section-kicker">Explora Vet Fast</span>
+                <h2 class="font-title section-title">Encuentra lo que necesita tu mascota</h2>
+                <p class="section-copy mt-4">Accede rápidamente a productos para perros, opciones para gatos y nuestras dos principales líneas veterinarias.</p>
+            </div>
 
-                <!-- Feature 2 -->
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
-                            <i data-lucide="truck" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Delivery Rápido</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Sabemos que la salud no espera. Ofrecemos entregas rápidas y seguras para que el tratamiento de tu mascota no sufra interrupciones.</p>
-                    </div>
-                </div>
+            <div class="quick-grid">
+                <button type="button" class="quick-card" onclick="aplicarBusqueda('perros')">
+                    <i data-lucide="dog"></i>
+                    <strong>Para perros</strong>
+                    <span>Busca productos descritos para perros.</span>
+                </button>
+                <button type="button" class="quick-card" onclick="aplicarBusqueda('gatos')">
+                    <i data-lucide="cat"></i>
+                    <strong>Para gatos</strong>
+                    <span>Consulta las presentaciones Bravecto Plus.</span>
+                </button>
+                <button type="button" class="quick-card" onclick="aplicarBusqueda('antipulgas')">
+                    <i data-lucide="shield-check"></i>
+                    <strong>Antipulgas</strong>
+                    <span>Opciones orientadas a la prevención.</span>
+                </button>
+                <button type="button" class="quick-card" onclick="aplicarBusqueda('1M TRIPLE')">
+                    <i data-lucide="calendar-clock"></i>
+                    <strong>Protección mensual</strong>
+                    <span>Encuentra la línea Bravecto 1M Triple.</span>
+                </button>
+                <button type="button" class="quick-card" onclick="filtrarPorCategoria('Línea MSD')">
+                    <i data-lucide="badge-check"></i>
+                    <strong>Línea MSD</strong>
+                    <span>Conoce la oferta disponible.</span>
+                </button>
+                <button type="button" class="quick-card" onclick="filtrarPorCategoria('Línea Veterline')">
+                    <i data-lucide="briefcase-medical"></i>
+                    <strong>Línea Veterline</strong>
+                    <span>Medicamentos y productos veterinarios.</span>
+                </button>
+            </div>
+        </div>
+    </section>
 
-                <!-- Feature 3 -->
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
-                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Compra Directa</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Proceso de compra ágil, directo y sin intermediarios. Realiza tus pedidos fácilmente garantizando el mejor servicio y disponibilidad.</p>
-                    </div>
+    <section id="destacados" class="featured-section no-print">
+        <div class="section-shell">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="section-kicker">Selección Vet Fast</span>
+                    <h2 class="font-title section-title">Productos destacados</h2>
+                    <p class="section-copy mt-3">Una selección de productos para conocer primero, sin alterar el catálogo ni sus precios.</p>
                 </div>
+                <a href="#catalogo" class="text-brand-accent font-bold text-sm hover:underline">Ver catálogo completo →</a>
+            </div>
+            <div id="featured-products" class="featured-grid"></div>
+        </div>
+    </section>
 
-                <!-- Feature 4 -->
-                <div class="flex gap-4">
-                    <div class="flex-shrink-0 mt-1">
-                        <div class="w-10 h-10 rounded-full bg-[#f8fafc] flex items-center justify-center text-brand-accent border border-gray-100">
-                            <i data-lucide="package" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-gray-900 mb-1 tracking-tight">Amplio Stock</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed text-justify">Disponibilidad inmediata de una gran variedad de medicinas, antipulgas, vitaminas, suplementos y productos dermatológicos.</p>
-                    </div>
+    <section id="catalogo" class="catalog-toolbar no-print">
+        <div class="catalog-toolbar-inner">
+            <div class="toolbar-top">
+                <div>
+                    <div class="toolbar-title">Explorar catálogo</div>
+                    <div class="toolbar-subtitle">Busca por medicamento, dosis, peso, presentación o línea.</div>
+                </div>
+                <div class="search-wrap">
+                    <i data-lucide="search"></i>
+                    <input id="search-input" type="search" autocomplete="off" placeholder="Buscar medicamento, dosis, peso...">
+                </div>
+            </div>
+
+            <div id="category-filters" class="category-scroll" aria-label="Filtros por línea de productos"></div>
+
+            <div class="toolbar-bottom">
+                <span id="results-count" class="results-count"></span>
+                <label class="sort-control">
+                    Ordenar por
+                    <select id="sort-select">
+                        <option value="default">Relevancia</option>
+                        <option value="price-asc">Precio: menor a mayor</option>
+                        <option value="price-desc">Precio: mayor a menor</option>
+                        <option value="name">Nombre</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content" class="catalog-main">
+        <div class="section-shell">
+            <div class="empty-state">
+                <div class="empty-icon"><i data-lucide="loader-circle"></i></div>
+                <h3 class="font-title">Cargando catálogo</h3>
+                <p>Estamos preparando los productos disponibles.</p>
+            </div>
+        </div>
+    </main>
+
+    <section id="como-comprar" class="guidance-section no-print">
+        <div class="section-shell guidance-grid">
+            <div>
+                <span class="section-kicker" style="color:#65d7b0;">Compra responsable</span>
+                <h2 class="font-title section-title mt-2">Te ayudamos a encontrar la presentación adecuada.</h2>
+                <p class="guidance-copy mt-5">
+                    Elige el producto que te interesa, revisa su presentación y rango de peso cuando corresponda y escríbenos por WhatsApp para confirmar disponibilidad y entrega.
+                    La indicación de dosis, tratamiento y frecuencia debe seguir siempre la recomendación de tu médico veterinario.
+                </p>
+                <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-accent hover:bg-[#0ab672] text-white px-6 py-3.5 rounded-full font-bold mt-7 transition-colors">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Consultar por WhatsApp
+                </a>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card"><span class="process-number">01</span><h3>Elige el producto</h3><p>Revisa nombre, presentación, rango de peso y precio.</p></div>
+                <div class="process-card"><span class="process-number">02</span><h3>Consulta disponibilidad</h3><p>Escríbenos por WhatsApp y confirma el producto que necesitas.</p></div>
+                <div class="process-card"><span class="process-number">03</span><h3>Valida con tu veterinario</h3><p>En medicamentos, sigue la indicación profesional para tu mascota.</p></div>
+                <div class="process-card"><span class="process-number">04</span><h3>Coordina tu entrega</h3><p>Confirmamos contigo disponibilidad y modalidad de delivery.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section no-print">
+        <div class="section-shell">
+            <div class="max-w-2xl">
+                <span class="section-kicker">Antes de pedir</span>
+                <h2 class="font-title section-title">Comprar en Vet Fast es sencillo</h2>
+                <p class="section-copy mt-4">Toda la información del catálogo está pensada para que puedas ubicar rápidamente el producto y luego confirmar la compra por WhatsApp.</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="info-number">1</span>
+                    <h3>Busca por nombre o peso</h3>
+                    <p>El buscador reconoce medicamento, dosis, peso, presentación y descripción.</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-number">2</span>
+                    <h3>Revisa la presentación</h3>
+                    <p>Comprueba la presentación y rango de peso mostrados en la tarjeta del producto.</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-number">3</span>
+                    <h3>Escríbenos por WhatsApp</h3>
+                    <p>Cada producto genera un mensaje con nombre, presentación y precio para facilitar tu consulta.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- --- NAVEGACIÓN DE CATEGORÍAS Y BÚSQUEDA --- -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-4 no-print">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200 pb-4">
-            <div class="flex flex-wrap gap-3" id="category-filters">
-                <!-- Los botones se generarán por JS -->
+    <section id="nosotros" class="about-section no-print">
+        <div class="section-shell about-grid">
+            <div>
+                <span class="section-kicker">Conoce Vet Fast</span>
+                <h2 class="font-title section-title">Cuidado veterinario con una experiencia simple.</h2>
+                <p class="section-copy mt-5">
+                    Vet Fast reúne productos veterinarios para el cuidado y bienestar de mascotas, con especial enfoque en perros.
+                    El catálogo está organizado para que puedas comparar rápidamente presentaciones y encontrar el producto que quieres consultar.
+                </p>
+                <p class="section-copy mt-4">
+                    Cuando se trate de medicamentos, usa la información de esta página como referencia del producto y sigue siempre la indicación de un médico veterinario para dosis y tratamiento.
+                </p>
             </div>
-            
-            <!-- Barra de Búsqueda -->
-            <div class="relative w-full sm:w-72 md:w-96">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
-                </div>
-                <input type="text" id="search-input" placeholder="Buscar medicamento, dosis, peso..." class="w-full pl-10 pr-4 py-2.5 rounded-full border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent transition-all shadow-sm text-gray-800 placeholder-gray-400">
+
+            <div class="about-panel">
+                <div class="about-row"><i data-lucide="paw-print"></i><div><strong>Especial foco en perros</strong><span>Gran parte del catálogo actual está orientado a la prevención y cuidado de perros.</span></div></div>
+                <div class="about-row"><i data-lucide="package-check"></i><div><strong>Información visible</strong><span>Nombre, peso, presentación, descripción e importe se muestran directamente en cada producto.</span></div></div>
+                <div class="about-row"><i data-lucide="message-circle"></i><div><strong>Atención por WhatsApp</strong><span>La consulta de cada producto se inicia con un mensaje prellenado para agilizar la atención.</span></div></div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- --- GRID DE PRODUCTOS --- -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" id="main-content">
-        <!-- El contenido se renderizará por JS agrupado por categorías -->
-    </main>
+    <section id="faq" class="faq-section no-print">
+        <div class="section-shell">
+            <div class="max-w-3xl">
+                <span class="section-kicker">Preguntas frecuentes</span>
+                <h2 class="font-title section-title">Lo que debes saber antes de comprar</h2>
+                <p class="section-copy mt-4">Información básica para usar el catálogo de forma rápida y responsable.</p>
+            </div>
 
-    <!-- --- FOOTER --- -->
-    <footer class="bg-brand-900 text-white mt-12 py-16 border-t-[6px] border-brand-accent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-8">
-                <div>
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="h-14 w-auto min-w-[3.5rem] bg-white rounded-xl flex items-center justify-center overflow-hidden p-1.5">
-                            <img src="assets/logo-vetfast.png" alt="Logo Vet Fast" class="h-full w-auto object-contain" onerror="this.src='https://placehold.co/120x60/ffffff/17569b?text=VF'">
-                        </div>
-                        <div>
-                            <h3 class="font-title text-2xl font-black tracking-wider"><span class="text-white">VET</span><span class="text-[#2ed196]">FAST</span></h3>
-                            <p class="text-gray-300 text-[10px] uppercase tracking-[0.2em] mt-1">Salud para tu mascota</p>
-                        </div>
+            <div class="faq-list">
+                <details>
+                    <summary>¿Vet Fast está orientado principalmente a perros?<span>+</span></summary>
+                    <p>Sí. El catálogo actual tiene un enfoque principal en perros, aunque también incluye algunas presentaciones destinadas a gatos.</p>
+                </details>
+                <details>
+                    <summary>¿Cómo sé qué presentación corresponde a mi mascota?<span>+</span></summary>
+                    <p>Revisa el rango de peso mostrado en cada tarjeta cuando esté disponible. La selección final del producto y su uso debe validarse con tu médico veterinario.</p>
+                </details>
+                <details>
+                    <summary>¿Puedo consultar por WhatsApp antes de comprar?<span>+</span></summary>
+                    <p>Sí. Cada tarjeta incluye un botón de consulta que abre WhatsApp con el nombre, presentación y precio del producto.</p>
+                </details>
+                <details>
+                    <summary>¿Realizan delivery?<span>+</span></summary>
+                    <p>La entrega se coordina por WhatsApp. Consulta la disponibilidad del producto y el costo/modalidad de delivery según tu ubicación.</p>
+                </details>
+                <details>
+                    <summary>¿Puedo usar el catálogo para decidir una dosis?<span>+</span></summary>
+                    <p>No. El catálogo muestra información comercial del producto, pero la dosis, duración del tratamiento y frecuencia de uso deben ser indicadas por un profesional veterinario.</p>
+                </details>
+                <details>
+                    <summary>¿Puedo buscar por peso o presentación?<span>+</span></summary>
+                    <p>Sí. El buscador trabaja con el nombre, descripción, peso, presentación y línea del producto.</p>
+                </details>
+                <details>
+                    <summary>¿Los precios del catálogo están actualizados?<span>+</span></summary>
+                    <p>El catálogo muestra los precios cargados actualmente en Vet Fast. Antes de confirmar el pedido conviene validar disponibilidad y precio por WhatsApp.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section no-print">
+        <div class="section-shell">
+            <div class="contact-panel">
+                <div class="contact-card">
+                    <h3>¿Tienes un producto en mente?</h3>
+                    <p>Escríbenos y confirma disponibilidad, presentación y entrega de tu pedido.</p>
+                    <div class="contact-actions">
+                        <a class="contact-wa" href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i> WhatsApp</a>
+                        <a class="contact-ig" href="https://www.instagram.com/vet.fast/" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i> Instagram</a>
                     </div>
-                    <p class="text-gray-200 text-sm leading-relaxed max-w-sm">Tu aliado de confianza en salud animal. Ofrecemos los mejores medicamentos y productos veterinarios con envío rápido a domicilio.</p>
                 </div>
-
-                <div>
-                    <h4 class="font-title text-lg font-bold mb-6 text-white tracking-wide">Contacto Directo</h4>
-                    <ul class="space-y-4">
-                        <li>
-                            <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" class="flex items-center text-gray-200 hover:text-white transition-colors group w-fit">
-                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mr-4 group-hover:bg-[#25D366] transition-colors">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-                                </div>
-                                <span class="font-medium tracking-wide">+51 980 764 585</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-title text-lg font-bold mb-6 text-white tracking-wide">Síguenos</h4>
-                    <div class="flex space-x-4">
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/vet.fast/" target="_blank" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] transition-all duration-300 shadow-md" title="Instagram">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12.8 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-                        </a>
-                        <!-- Facebook -->
-                        <a href="https://www.facebook.com/profile.php?id=61585898368278" target="_blank" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1877F2] transition-all duration-300 shadow-md" title="Facebook">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
-                        </a>
-                    </div>
+                <div class="contact-card">
+                    <h3>Atención responsable</h3>
+                    <p>Para medicamentos, ten a la mano el peso de tu mascota y, cuando corresponda, la indicación de tu veterinario para consultar la presentación correcta.</p>
                 </div>
             </div>
-            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-300 text-xs">
-                <p>&copy; <span id="current-year"></span> Vet Fast. Todos los derechos reservados.</p>
-                <p>Catálogo Oficial</p>
+        </div>
+    </section>
+
+    <footer class="site-footer no-print">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">
+                    <img src="assets/logo-vetfast.png" alt="Logo Vet Fast">
+                    <div>
+                        <h3 class="footer-title">Vet Fast</h3>
+                        <p class="footer-subtitle">Salud y protección animal</p>
+                    </div>
+                </div>
+                <p class="footer-copy">
+                    Catálogo de productos veterinarios con especial enfoque en perros. Consulta disponibilidad, atención y delivery directamente por WhatsApp.
+                </p>
             </div>
+
+            <div>
+                <h4 class="font-title font-bold mb-4">Enlaces rápidos</h4>
+                <div class="footer-links">
+                    <a href="#categorias">Explorar</a>
+                    <a href="#destacados">Destacados</a>
+                    <a href="#catalogo">Catálogo</a>
+                    <a href="#como-comprar">Cómo comprar</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#faq">Preguntas frecuentes</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-title font-bold mb-4">Contacto</h4>
+                <div class="footer-contact">
+                    <a href="https://api.whatsapp.com/send?phone=51980764585" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i> +51 980 764 585</a>
+                    <a href="https://www.instagram.com/vet.fast/" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i> @vet.fast</a>
+                    <a href="https://www.facebook.com/profile.php?id=61585898368278" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i> Facebook</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="current-year"></span> Vet Fast. Todos los derechos reservados.</span>
+            <span>Catálogo veterinario</span>
         </div>
     </footer>
 
-    <!-- --- LIGHTBOX (MODAL DE IMAGEN COMPLETA) --- -->
-    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm hidden items-center justify-center" onclick="cerrarModal(event)">
-        <!-- Botón Cerrar -->
-        <button class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2" onclick="cerrarModal(event, true)">
-            <i data-lucide="x" class="w-8 h-8"></i>
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de producto" onclick="cerrarModal(event)">
+        <button id="lightbox-close" aria-label="Cerrar galería" onclick="cerrarModal(event, true)">
+            <i data-lucide="x"></i>
         </button>
-        
-        <!-- Flecha Izquierda -->
-        <button id="lightbox-prev" class="lightbox-nav-btn absolute left-4 md:left-10 text-white rounded-full p-3 md:p-4 z-50 transition-all duration-200" onclick="cambiarImagenLightbox(-1, event)">
-            <i data-lucide="chevron-left" class="w-8 h-8"></i>
+        <button id="lightbox-prev" class="lightbox-btn" aria-label="Imagen anterior" onclick="cambiarImagenLightbox(-1, event)">
+            <i data-lucide="chevron-left"></i>
         </button>
-
-        <!-- Contenedor de la Imagen -->
-        <div class="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center">
-            <img id="lightbox-img" src="" alt="Vista ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300">
-            
-            <!-- Contador de imágenes -->
-            <div id="lightbox-counter" class="absolute -bottom-10 bg-black/50 text-white/90 px-4 py-1.5 rounded-full text-sm font-medium tracking-wider backdrop-blur-md">
-                1 / 1
-            </div>
+        <div class="lightbox-inner">
+            <img id="lightbox-img" src="" alt="">
+            <div id="lightbox-counter">1 / 1</div>
         </div>
-
-        <!-- Flecha Derecha -->
-        <button id="lightbox-next" class="lightbox-nav-btn absolute right-4 md:right-10 text-white rounded-full p-3 md:p-4 z-50 transition-all duration-200" onclick="cambiarImagenLightbox(1, event)">
-            <i data-lucide="chevron-right" class="w-8 h-8"></i>
+        <button id="lightbox-next" class="lightbox-btn" aria-label="Imagen siguiente" onclick="cambiarImagenLightbox(1, event)">
+            <i data-lucide="chevron-right"></i>
         </button>
     </div>
 
-    <!-- Lógica del Catálogo -->
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Estructura de productos actualizada con CATEGORÍAS
-        const productos = [
-            // --- LÍNEA MSD ---
-            { 
-                id: 101,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 112.5 MG", 
-                peso: "2KG A 4.5 KG",
-                presentacion: "1 COMP",
-                precio: 93.44, 
-                imagenes: ["assets/brav-112.png"], 
-                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros pequeños." 
-            },
-            { 
-                id: 102,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 250 MG", 
-                peso: "4.5KG A 10 KG",
-                presentacion: "1 COMP",
-                precio: 99.57, 
-                imagenes: ["assets/brav-250.png"], 
-                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros medianos." 
-            },
-            { 
-                id: 103,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 500MG", 
-                peso: "10KG A 20 KG",
-                presentacion: "1 COMP",
-                precio: 105.71, 
-                imagenes: ["assets/brav-500.png"], 
-                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros medianos-grandes." 
-            },
-            { 
-                id: 104,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1000MG", 
-                peso: "20KG A 40 KG",
-                presentacion: "1 COMP",
-                precio: 136.40, 
-                imagenes: ["assets/brav-1000.png"], 
-                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros grandes." 
-            },
-            { 
-                id: 105,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1400MG", 
-                peso: "40KG A 56 KG",
-                presentacion: "1 COMP",
-                precio: 171.99, 
-                imagenes: ["assets/brav-1400.png"], 
-                descripcion: "Tableta masticable antipulgas y garrapatas de larga duración para perros gigantes." 
-            },
-            // BRAVECTO 1M TRIPLE
-            { 
-                id: 106,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1M TRIPLE 25 MG", 
-                peso: "1.27 A 2.5 KG",
-                presentacion: "3 TAB",
-                precio: 104.00, 
-                imagenes: ["assets/brav-1m-25.png"], 
-                descripcion: "Protección mensual en pack de 3 tabletas para perros muy pequeños." 
-            },
-            { 
-                id: 107,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1M TRIPLE 50 MG", 
-                peso: "2.5 A 5 KG",
-                presentacion: "3 TAB",
-                precio: 109.00, 
-                imagenes: ["assets/brav-1m-50.png"], 
-                descripcion: "Protección mensual en pack de 3 tabletas para perros pequeños." 
-            },
-            { 
-                id: 108,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1M TRIPLE 100 MG", 
-                peso: "5 A 10 KG",
-                presentacion: "3 TAB",
-                precio: 116.00, 
-                imagenes: ["assets/brav-1m-100.png"], 
-                descripcion: "Protección mensual en pack de 3 tabletas para perros medianos." 
-            },
-            { 
-                id: 109,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1M TRIPLE 200 MG", 
-                peso: "10 A 20 KG",
-                presentacion: "3 TAB",
-                precio: 124.00, 
-                imagenes: ["assets/brav-1m-200.png"], 
-                descripcion: "Protección mensual en pack de 3 tabletas para perros medianos-grandes." 
-            },
-            { 
-                id: 110,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1M TRIPLE 400 MG", 
-                peso: "20 A 40 KG",
-                presentacion: "3 TAB",
-                precio: 159.00, 
-                imagenes: ["assets/brav-1m-400.png"], 
-                descripcion: "Protección mensual en pack de 3 tabletas para perros grandes." 
-            },
-            { 
-                id: 111,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO 1M TRIPLE 600 MG", 
-                peso: "40 A 60 KG",
-                presentacion: "3 TAB",
-                precio: 201.00, 
-                imagenes: ["assets/brav-1m-600.png"], 
-                descripcion: "Protección mensual en pack de 3 tabletas para perros gigantes." 
-            },
-            // BRAVECTO PLUS (GATOS)
-            { 
-                id: 112,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO PLUS", 
-                peso: "1.2 A 2.8 KG",
-                presentacion: "SPOT ON",
-                precio: 105.28, 
-                imagenes: ["assets/brav-plus-p.png"], 
-                descripcion: "Solución tópica (pipeta) para gatos. Protege contra pulgas, garrapatas y parásitos internos." 
-            },
-            { 
-                id: 113,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO PLUS", 
-                peso: "2.8 A 6.25 KG",
-                presentacion: "SPOT ON",
-                precio: 112.88, 
-                imagenes: ["assets/brav-plus-m.png"], 
-                descripcion: "Solución tópica (pipeta) para gatos medianos. Protege contra pulgas, garrapatas y parásitos internos." 
-            },
-            { 
-                id: 114,
-                categoria: "Línea MSD",
-                nombre: "BRAVECTO PLUS", 
-                peso: "6.25 A 12.5 KG",
-                presentacion: "SPOT ON",
-                precio: 120.69, 
-                imagenes: ["assets/brav-plus-g.png"], 
-                descripcion: "Solución tópica (pipeta) para gatos grandes. Protege contra pulgas, garrapatas y parásitos internos." 
-            },
-
-            // --- LÍNEA VETERLINE ---
-            { 
-                id: 201,
-                categoria: "Línea Veterline",
-                nombre: "ALERFLAM", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 19.93, 
-                imagenes: ["assets/vl-alerflam.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 202,
-                categoria: "Línea Veterline",
-                nombre: "BACTRINA", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 33.36, 
-                imagenes: ["assets/vl-bactrina.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 203,
-                categoria: "Línea Veterline",
-                nombre: "CEFAVET 300MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 27.74, 
-                imagenes: ["assets/vl-cefavet-300.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 204,
-                categoria: "Línea Veterline",
-                nombre: "CEFAVET 600MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 46.64, 
-                imagenes: ["assets/vl-cefavet-600.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 205,
-                categoria: "Línea Veterline",
-                nombre: "CICATRIVET 25GR", 
-                peso: "Uso Veterinario",
-                presentacion: "1 UND",
-                precio: 18.98, 
-                imagenes: ["assets/vl-cicatrivet-25.png"], 
-                descripcion: "Ungüento/crema cicatrizante. Consulte a su médico veterinario para su correcta aplicación." 
-            },
-            { 
-                id: 206,
-                categoria: "Línea Veterline",
-                nombre: "CLAMOVET 250", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 70.67, 
-                imagenes: ["assets/vl-clamovet-250.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 207,
-                categoria: "Línea Veterline",
-                nombre: "CLINDAVET 75MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 33.76, 
-                imagenes: ["assets/vl-clindavet-75.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 208,
-                categoria: "Línea Veterline",
-                nombre: "CLINDAVET 150MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 58.14, 
-                imagenes: ["assets/vl-clindavet-150.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 209,
-                categoria: "Línea Veterline",
-                nombre: "DERMASEP ALOE 120ML", 
-                peso: "Uso Veterinario",
-                presentacion: "PACK 6",
-                precio: 19.94, 
-                imagenes: ["assets/vl-dermasep-120.png"], 
-                descripcion: "Producto dermatológico con Aloe Vera. Consulte a su médico veterinario para su uso." 
-            },
-            { 
-                id: 210,
-                categoria: "Línea Veterline",
-                nombre: "DOXITEL 100MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 21.56, 
-                imagenes: ["assets/vl-doxitel-100.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 211,
-                categoria: "Línea Veterline",
-                nombre: "DOXITEL 200MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 35.96, 
-                imagenes: ["assets/vl-doxitel-200.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 212,
-                categoria: "Línea Veterline",
-                nombre: "FLOXATEL 50MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 18.98, 
-                imagenes: ["assets/vl-floxatel-50.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 213,
-                categoria: "Línea Veterline",
-                nombre: "FLOXATEL 100MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 31.08, 
-                imagenes: ["assets/vl-floxatel-100.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 214,
-                categoria: "Línea Veterline",
-                nombre: "GASTROPET 10MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 35.28, 
-                imagenes: ["assets/vl-gastropet-10.png"], 
-                descripcion: "Protector gástrico de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 215,
-                categoria: "Línea Veterline",
-                nombre: "HEPATIOPET", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 36.30, 
-                imagenes: ["assets/vl-hepatiopet.png"], 
-                descripcion: "Protector hepático de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 216,
-                categoria: "Línea Veterline",
-                nombre: "HIGACURE", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 25.40, 
-                imagenes: ["assets/vl-higacure.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 217,
-                categoria: "Línea Veterline",
-                nombre: "KETOVET 10MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 35.96, 
-                imagenes: ["assets/vl-ketovet-10.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 218,
-                categoria: "Línea Veterline",
-                nombre: "KETOVET 20MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TAB",
-                precio: 59.20, 
-                imagenes: ["assets/vl-ketovet-20.png"], 
-                descripcion: "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 219,
-                categoria: "Línea Veterline",
-                nombre: "LAX-NATUR 22MG", 
-                peso: "Uso Veterinario",
-                presentacion: "1 UND",
-                precio: 18.90, 
-                imagenes: ["assets/vl-laxnatur-22.png"], 
-                descripcion: "Laxante de uso veterinario. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 220,
-                categoria: "Línea Veterline",
-                nombre: "MELOXIVET 1MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TABS",
-                precio: 18.57, 
-                imagenes: ["assets/vl-meloxivet-1.png"], 
-                descripcion: "Antiinflamatorio de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 221,
-                categoria: "Línea Veterline",
-                nombre: "MELOXIVET 4MG", 
-                peso: "Uso Veterinario",
-                presentacion: "40 TABS",
-                precio: 47.81, 
-                imagenes: ["assets/vl-meloxivet-4.png"], 
-                descripcion: "Antiinflamatorio de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            },
-            { 
-                id: 222,
-                categoria: "Línea Veterline",
-                nombre: "MICOPET 200MG", 
-                peso: "Uso Veterinario",
-                presentacion: "32 TAB",
-                precio: 32.28, 
-                imagenes: ["assets/vl-micopet-200.png"], 
-                descripcion: "Antimicótico de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada." 
-            }
-        ];
-
-        // Obtener categorías únicas
-        const categorias = ["Todas", ...new Set(productos.map(p => p.categoria))];
-        let categoriaActual = "Todas";
-        let terminoBusqueda = "";
-
-        // Generar botones de filtro
-        const filtersContainer = document.getElementById('category-filters');
-        
-        function renderFilters() {
-            filtersContainer.innerHTML = categorias.map(cat => `
-                <button 
-                    onclick="filtrarPorCategoria('${cat}')"
-                    class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 border-2 
-                    ${categoriaActual === cat 
-                        ? 'border-brand-accent bg-brand-accent text-white shadow-md' 
-                        : 'border-gray-200 bg-white text-gray-600 hover:border-brand-accent/50 hover:text-brand-accent'}"
-                >
-                    ${cat}
-                </button>
-            `).join('');
-        }
-
-        // Función para renderizar el HTML de una tarjeta de producto
-        function generarHTMLProducto(producto) {
-            const mainImgId = `main-img-${producto.id}`;
-            const whatsappText = `Hola, me interesa el producto: ${producto.nombre} (${producto.peso}) - Precio: S/ ${producto.precio.toFixed(2)}`;
-
-            return `
-            <div class="print-break-avoid bg-white rounded-[20px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full group mb-8 print-shadow-none">
-                
-                <!-- Etiqueta de Laboratorio -->
-                <div class="absolute top-4 left-4 z-30 no-print">
-                    <span class="bg-brand-900/90 backdrop-blur text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm">
-                        ${producto.categoria}
-                    </span>
-                </div>
-
-                <!-- Contenedor de la imagen -->
-                <div id="wrapper-${producto.id}" data-current-index="0" class="img-wrapper relative w-full h-56 sm:h-64 flex items-center justify-center border-b border-gray-100 cursor-pointer group/img bg-white p-6" onclick="abrirModal(${producto.id}, parseInt(this.getAttribute('data-current-index')))">
-
-                    <img 
-                        id="${mainImgId}"
-                        src="${producto.imagenes[0]}" 
-                        alt="${producto.nombre}"
-                        class="w-auto h-auto max-w-full max-h-full object-contain object-center transition-transform duration-700 ease-in-out group-hover/img:scale-105 relative z-10 drop-shadow-sm"
-                        onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Sin+Foto'"
-                    />
-                    
-                    <div class="absolute inset-0 bg-white/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center no-print backdrop-blur-[2px] z-20">
-                        <div class="bg-white p-3 rounded-full shadow-xl transform scale-50 group-hover/img:scale-100 transition-transform duration-300">
-                            <i data-lucide="zoom-in" class="w-6 h-6 text-brand-accent"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Miniaturas -->
-                ${producto.imagenes.length > 1 ? `
-                <div class="flex flex-wrap justify-center gap-3 p-3 bg-gray-50/50 border-b border-gray-100 no-print relative z-30">
-                    ${producto.imagenes.map((img, index) => {
-                        return `
-                        <button 
-                            class="w-12 h-12 rounded-lg overflow-hidden border-2 border-transparent hover:border-brand-accent focus:border-brand-accent transition-all duration-200 bg-white shadow-sm cursor-pointer hover:scale-105"
-                            title="Ver Foto ${index + 1}"
-                            onclick="
-                                document.getElementById('${mainImgId}').src='${img}'; 
-                                document.getElementById('wrapper-${producto.id}').setAttribute('data-current-index', '${index}')
-                            "
-                        >
-                            <img src="${img}" alt="Foto ${index + 1}" class="w-full h-full object-contain p-1" onerror="this.src='https://placehold.co/100x100/eeeeee/999999?text=${index + 1}'" />
-                        </button>
-                        `;
-                    }).join('')}
-                </div>
-                ` : ''}
-
-                <!-- Info Card -->
-                <div class="print-card-body p-6 flex flex-col flex-grow bg-white relative z-30">
-                    <h3 class="print-title font-title text-lg font-bold text-brand-900 leading-tight mb-1 group-hover:text-brand-accent transition-colors">${producto.nombre}</h3>
-                    
-                    <!-- Atributos del medicamento -->
-                    <div class="flex flex-wrap gap-2 mb-3 mt-2">
-                        <span class="inline-flex items-center gap-1 bg-blue-50 text-brand-800 text-xs font-semibold px-2.5 py-1 rounded border border-blue-100">
-                            <i data-lucide="scale" class="w-3 h-3"></i> ${producto.peso}
-                        </span>
-                        <span class="inline-flex items-center gap-1 bg-green-50 text-brand-accent text-xs font-semibold px-2.5 py-1 rounded border border-green-100">
-                            <i data-lucide="pill" class="w-3 h-3"></i> ${producto.presentacion}
-                        </span>
-                    </div>
-
-                    <p class="print-text-sm text-gray-500 text-sm leading-relaxed flex-grow text-justify">${producto.descripcion}</p>
-                    
-                    <!-- Precio y Botón de Acción -->
-                    <div class="print-mt-auto flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-gray-400 font-bold tracking-widest uppercase mb-1">Precio</span>
-                            <div class="flex items-start">
-                                <span class="font-title text-sm font-bold text-brand-900 mt-1 mr-1">S/</span>
-                                <span class="print-price font-title text-3xl font-black text-brand-900 tracking-tight">${producto.precio.toFixed(2)}</span>
-                            </div>
-                        </div>
-                        
-                        <a 
-                            href="https://api.whatsapp.com/send?phone=51980764585&text=${encodeURIComponent(whatsappText)}" 
-                            target="_blank" 
-                            class="no-print bg-[#25D366] hover:bg-[#20b858] text-white px-5 py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2"
-                            title="Pedir por WhatsApp"
-                        >
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157.1zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-                            <span class="font-bold text-sm tracking-wide hidden sm:block">Pedir</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            `;
-        }
-
-        // Renderizado del Grid Principal
-        const mainContainer = document.getElementById('main-content');
-        
-        function renderizarProductos() {
-            renderFilters();
-            
-            // Lógica de filtrado combinada (Categoría + Búsqueda)
-            const productosFiltrados = productos.filter(p => {
-                const cumpleCategoria = categoriaActual === "Todas" || p.categoria === categoriaActual;
-                
-                // Convierte nombre y descripción a minúsculas para buscar ignorando mayúsculas
-                const cumpleBusqueda = terminoBusqueda === "" || 
-                    p.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase()) || 
-                    p.descripcion.toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
-                    p.peso.toLowerCase().includes(terminoBusqueda.toLowerCase());
-                
-                return cumpleCategoria && cumpleBusqueda;
-            });
-
-            // Agrupar por categoría para mostrarlos en bloques
-            const productosAgrupados = productosFiltrados.reduce((acc, obj) => {
-                const key = obj.categoria;
-                if (!acc[key]) acc[key] = [];
-                acc[key].push(obj);
-                return acc;
-            }, {});
-
-            let htmlCompleto = '';
-
-            for (const [categoria, items] of Object.entries(productosAgrupados)) {
-                // Título de la sección (Laboratorio)
-                htmlCompleto += `
-                    <div class="mb-10 first:mt-0 mt-16 print-break-avoid">
-                        <div class="flex items-center gap-4 mb-6 pb-2 border-b-2 border-brand-accent/20">
-                            <h2 class="font-title text-2xl font-bold text-brand-900">${categoria}</h2>
-                            <span class="bg-gray-100 text-gray-500 text-xs font-bold px-3 py-1 rounded-full">${items.length} productos</span>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="grid-${categoria.replace(/\s+/g, '-')}">
-                            ${items.map(producto => generarHTMLProducto(producto)).join('')}
-                        </div>
-                    </div>
-                `;
-            }
-
-            // Mensaje si no hay resultados en la búsqueda
-            mainContainer.innerHTML = htmlCompleto || `
-                <div class="text-center py-16 px-4">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
-                        <i data-lucide="search-x" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="font-title text-xl font-bold text-gray-900 mb-2">No encontramos ningún producto</h3>
-                    <p class="text-gray-500">Intenta buscar con otros términos o cambiar de laboratorio.</p>
-                </div>
-            `;
-            
-            lucide.createIcons(); // Recargar iconos en las nuevas tarjetas
-        }
-
-        // Función global para cambiar filtro
-        window.filtrarPorCategoria = function(categoria) {
-            categoriaActual = categoria;
-            renderizarProductos();
-        };
-
-        // Evento de escucha para la barra de búsqueda (en tiempo real)
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            terminoBusqueda = e.target.value;
-            renderizarProductos();
-        });
-
-        // Render inicial
-        renderizarProductos();
-
-
-        // --- FUNCIONES DEL LIGHTBOX (Galería en Pantalla Completa) ---
-        
-        function abrirModal(productoId, startIndex) {
-            currentLightboxProducto = productos.find(p => p.id === productoId);
-            currentLightboxIndex = startIndex;
-            actualizarLightbox();
-            document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evita que el fondo web haga scroll
-        }
-
-        function cerrarModal(event, forceClose = false) {
-            // Solo cierra si se hace clic en el fondo negro, o en la "X"
-            if (forceClose || event.target.id === 'lightbox') {
-                document.getElementById('lightbox').classList.remove('active');
-                document.body.style.overflow = 'auto'; // Restaura el scroll web
-                currentLightboxProducto = null;
-            }
-        }
-
-        function cambiarImagenLightbox(direccion, event) {
-            if(event) event.stopPropagation(); // Evita que el clic cierre el modal
-            if (!currentLightboxProducto) return;
-
-            const totalImagenes = currentLightboxProducto.imagenes.length;
-            
-            // Navegación circular
-            currentLightboxIndex += direccion;
-            if (currentLightboxIndex >= totalImagenes) currentLightboxIndex = 0;
-            if (currentLightboxIndex < 0) currentLightboxIndex = totalImagenes - 1;
-
-            actualizarLightbox();
-        }
-
-        function actualizarLightbox() {
-            const imgEl = document.getElementById('lightbox-img');
-            const counterEl = document.getElementById('lightbox-counter');
-            const prevBtn = document.getElementById('lightbox-prev');
-            const nextBtn = document.getElementById('lightbox-next');
-
-            // Cargar imagen
-            imgEl.src = currentLightboxProducto.imagenes[currentLightboxIndex];
-            
-            // Actualizar texto del contador (ej: "1 / 3")
-            const total = currentLightboxProducto.imagenes.length;
-            counterEl.textContent = `${currentLightboxIndex + 1} / ${total}`;
-
-            // Ocultar botones y contador si solo hay 1 foto
-            if (total <= 1) {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
-                counterEl.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'flex';
-                nextBtn.style.display = 'flex';
-                counterEl.style.display = 'block';
-            }
-        }
-
-        // Eventos de teclado (Flechas y Escape)
-        document.addEventListener('keydown', function(event) {
-            if (!document.getElementById('lightbox').classList.contains('active')) return;
-            
-            if (event.key === 'Escape') cerrarModal(event, true);
-            if (event.key === 'ArrowRight') cambiarImagenLightbox(1);
-            if (event.key === 'ArrowLeft') cambiarImagenLightbox(-1);
-        });
-
-        // Soporte táctil básico para móviles (Swipe)
-        let touchstartX = 0;
-        let touchendX = 0;
-        const lightboxElement = document.getElementById('lightbox');
-
-        lightboxElement.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; });
-        lightboxElement.addEventListener('touchend', e => { 
-            touchendX = e.changedTouches[0].screenX; 
-            handleSwipe(); 
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50; // Distancia mínima para considerar que es un swipe
-            if (touchendX < touchstartX - swipeThreshold) cambiarImagenLightbox(1); // Swipe Izquierda (Siguiente)
-            if (touchendX > touchstartX + swipeThreshold) cambiarImagenLightbox(-1); // Swipe Derecha (Anterior)
-        }
-
-        // Inicializar iconos
-        lucide.createIcons();
-    </script>
+    <script src="catalogo.js?v=vetfast-2" defer></script>
 </body>
 </html>
