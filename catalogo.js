@@ -45,8 +45,8 @@
     }
 
     function construirWhatsApp(producto) {
-        const texto = \`Hola, me interesa el producto: \${producto.nombre} (\${producto.peso}) - Presentación: \${producto.presentacion} - Precio: S/ \${Number(producto.precio).toFixed(2)}. Quisiera consultar disponibilidad y delivery.\`;
-        return \`https://api.whatsapp.com/send?phone=\${WHATSAPP}&text=\${encodeURIComponent(texto)}\`;
+        const texto = `Hola, me interesa el producto: ${producto.nombre} (${producto.peso}) - Presentación: ${producto.presentacion} - Precio: S/ ${Number(producto.precio).toFixed(2)}. Quisiera consultar disponibilidad y delivery.`;
+        return `https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(texto)}`;
     }
 
     function actualizarURL() {
@@ -55,7 +55,7 @@
         if (state.busqueda) params.set('buscar', state.busqueda);
         if (state.orden !== 'default') params.set('orden', state.orden);
         const query = params.toString();
-        history.replaceState(null, '', query ? \`\${window.location.pathname}?\${query}\` : window.location.pathname);
+        history.replaceState(null, '', query ? `${window.location.pathname}?${query}` : window.location.pathname);
     }
 
     function actualizarControles() {
@@ -72,14 +72,14 @@
         const categoriasPresentes = [...new Set(state.productos.map(p => p.categoria))];
         const categorias = ['Todas', ...ORDEN_CATEGORIAS.filter(cat => categoriasPresentes.includes(cat))];
 
-        container.innerHTML = categorias.map(cat => \`
+        container.innerHTML = categorias.map(cat => `
             <button
                 type="button"
-                class="category-filter \${state.categoria === cat ? 'category-filter-active' : ''}"
-                data-category="\${escapeHtml(cat)}"
-                aria-pressed="\${state.categoria === cat ? 'true' : 'false'}"
-            >\${escapeHtml(cat)}</button>
-        \`).join('');
+                class="category-filter ${state.categoria === cat ? 'category-filter-active' : ''}"
+                data-category="${escapeHtml(cat)}"
+                aria-pressed="${state.categoria === cat ? 'true' : 'false'}"
+            >${escapeHtml(cat)}</button>
+        `).join('');
     }
 
     function aplicarBusqueda(termino) {
@@ -108,26 +108,26 @@
             .map(id => state.productos.find(p => p.id === id))
             .filter(Boolean);
 
-        container.innerHTML = destacados.map(producto => \`
+        container.innerHTML = destacados.map(producto => `
             <article class="featured-card">
                 <div class="featured-media">
-                    <img src="\${escapeHtml(producto.imagenes[0])}" alt="\${escapeHtml(producto.nombre)}" loading="lazy" decoding="async">
+                    <img src="${escapeHtml(producto.imagenes[0])}" alt="${escapeHtml(producto.nombre)}" loading="lazy" decoding="async">
                     <span class="featured-badge"><i data-lucide="paw-print"></i> Selección Vet Fast</span>
                 </div>
                 <div class="featured-card-content">
                     <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Protección para perros</span>
-                    <h3 class="font-title text-2xl font-bold text-brand-900 mt-2">\${escapeHtml(producto.nombre)}</h3>
-                    <p class="text-gray-500 mt-3 leading-relaxed">\${escapeHtml(producto.descripcion)}</p>
+                    <h3 class="font-title text-2xl font-bold text-brand-900 mt-2">${escapeHtml(producto.nombre)}</h3>
+                    <p class="text-gray-500 mt-3 leading-relaxed">${escapeHtml(producto.descripcion)}</p>
                     <div class="flex items-end justify-between gap-4 mt-6">
                         <div>
                             <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-bold">Precio</span>
-                            <span class="font-title text-3xl font-black text-brand-900">S/ \${Number(producto.precio).toFixed(2)}</span>
+                            <span class="font-title text-3xl font-black text-brand-900">S/ ${Number(producto.precio).toFixed(2)}</span>
                         </div>
-                        <button type="button" class="featured-link" data-featured-product="\${producto.id}">Ver producto →</button>
+                        <button type="button" class="featured-link" data-featured-product="${producto.id}">Ver producto →</button>
                     </div>
                 </div>
             </article>
-        \`).join('');
+        `).join('');
 
         lucide.createIcons();
     }
@@ -137,32 +137,32 @@
         const whatsappUrl = construirWhatsApp(producto);
 
         const miniaturas = imagenes.length > 1
-            ? \`
-                <div class="product-thumbnails no-print" aria-label="Imágenes de \${escapeHtml(producto.nombre)}">
-                    \${imagenes.map((imagen, index) => \`
-                        <button type="button" class="product-thumb \${index === 0 ? 'is-active' : ''}" data-thumbnail-product="\${producto.id}" data-thumbnail-index="\${index}" aria-label="Ver imagen \${index + 1}">
-                            <img src="\${escapeHtml(imagen)}" alt="" loading="lazy" decoding="async">
+            ? `
+                <div class="product-thumbnails no-print" aria-label="Imágenes de ${escapeHtml(producto.nombre)}">
+                    ${imagenes.map((imagen, index) => `
+                        <button type="button" class="product-thumb ${index === 0 ? 'is-active' : ''}" data-thumbnail-product="${producto.id}" data-thumbnail-index="${index}" aria-label="Ver imagen ${index + 1}">
+                            <img src="${escapeHtml(imagen)}" alt="" loading="lazy" decoding="async">
                         </button>
-                    \`).join('')}
+                    `).join('')}
                 </div>
-            \`
+            `
             : '';
 
-        return \`
-            <article id="producto-\${producto.id}" class="product-card print-break-avoid">
+        return `
+            <article id="producto-${producto.id}" class="product-card print-break-avoid">
                 <div
                     class="product-media"
-                    data-lightbox-product="\${producto.id}"
+                    data-lightbox-product="${producto.id}"
                     data-lightbox-index="0"
                     role="button"
                     tabindex="0"
-                    aria-label="Ver \${escapeHtml(producto.nombre)} en grande"
+                    aria-label="Ver ${escapeHtml(producto.nombre)} en grande"
                 >
-                    <span class="product-category">\${escapeHtml(producto.categoria)}</span>
+                    <span class="product-category">${escapeHtml(producto.categoria)}</span>
                     <img
-                        data-main-image="\${producto.id}"
-                        src="\${escapeHtml(imagenes[0] || '')}"
-                        alt="\${escapeHtml(producto.nombre)}"
+                        data-main-image="${producto.id}"
+                        src="${escapeHtml(imagenes[0] || '')}"
+                        alt="${escapeHtml(producto.nombre)}"
                         loading="lazy"
                         decoding="async"
                         onerror="this.src='https://placehold.co/700x700/f1f5f9/17569b?text=Sin+Foto'"
@@ -170,28 +170,28 @@
                     <span class="product-expand no-print" aria-hidden="true"><i data-lucide="maximize-2"></i></span>
                 </div>
 
-                \${miniaturas}
+                ${miniaturas}
 
                 <div class="product-body">
                     <div class="product-tags">
-                        <span><i data-lucide="scale"></i> \${escapeHtml(producto.peso)}</span>
-                        <span><i data-lucide="pill"></i> \${escapeHtml(producto.presentacion)}</span>
+                        <span><i data-lucide="scale"></i> ${escapeHtml(producto.peso)}</span>
+                        <span><i data-lucide="pill"></i> ${escapeHtml(producto.presentacion)}</span>
                     </div>
 
-                    <h3 class="font-title product-title">\${escapeHtml(producto.nombre)}</h3>
-                    <p class="product-description">\${escapeHtml(producto.descripcion)}</p>
+                    <h3 class="font-title product-title">${escapeHtml(producto.nombre)}</h3>
+                    <p class="product-description">${escapeHtml(producto.descripcion)}</p>
 
                     <div class="product-bottom">
                         <div>
                             <span class="price-label">Precio</span>
-                            <div class="product-price"><small>S/</small> \${Number(producto.precio).toFixed(2)}</div>
+                            <div class="product-price"><small>S/</small> ${Number(producto.precio).toFixed(2)}</div>
                         </div>
                         <a
-                            href="\${whatsappUrl}"
+                            href="${whatsappUrl}"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="product-buy no-print"
-                            aria-label="Consultar \${escapeHtml(producto.nombre)} por WhatsApp"
+                            aria-label="Consultar ${escapeHtml(producto.nombre)} por WhatsApp"
                         >
                             <i data-lucide="message-circle"></i>
                             <span>Consultar</span>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </article>
-        \`;
+        `;
     }
 
     function obtenerProductosFiltrados() {
@@ -224,7 +224,7 @@
         const filtrados = obtenerProductosFiltrados();
         const contador = $('#results-count');
         if (contador) {
-            contador.textContent = \`\${filtrados.length} \${filtrados.length === 1 ? 'producto encontrado' : 'productos encontrados'}\`;
+            contador.textContent = `${filtrados.length} ${filtrados.length === 1 ? 'producto encontrado' : 'productos encontrados'}`;
         }
 
         actualizarURL();
@@ -232,14 +232,14 @@
         const categorias = ORDEN_CATEGORIAS.filter(cat => filtrados.some(p => p.categoria === cat));
 
         if (filtrados.length === 0) {
-            container.innerHTML = \`
+            container.innerHTML = `
                 <div class="empty-state">
                     <div class="empty-icon"><i data-lucide="search-x"></i></div>
                     <h3 class="font-title">No encontramos productos</h3>
                     <p>Prueba con otro medicamento, dosis, peso, presentación o categoría.</p>
                     <button type="button" onclick="aplicarBusqueda('')" class="empty-reset">Mostrar todo el catálogo</button>
                 </div>
-            \`;
+            `;
             lucide.createIcons();
             return;
         }
@@ -253,21 +253,21 @@
                 ? 'Protección antiparasitaria y opciones de prevención para perros y gatos.'
                 : 'Medicamentos y productos de uso veterinario. Consulta siempre la indicación de tu médico veterinario.';
 
-            html += \`
+            html += `
                 <section class="catalog-section print-break-avoid">
                     <div class="section-heading">
                         <div>
                             <span class="section-kicker">Línea de productos</span>
-                            <h2 class="font-title section-title">\${escapeHtml(categoria)}</h2>
-                            <p class="section-note">\${nota}</p>
+                            <h2 class="font-title section-title">${escapeHtml(categoria)}</h2>
+                            <p class="section-note">${nota}</p>
                         </div>
-                        <span class="section-count">\${items.length} \${items.length === 1 ? 'producto' : 'productos'}</span>
+                        <span class="section-count">${items.length} ${items.length === 1 ? 'producto' : 'productos'}</span>
                     </div>
                     <div class="products-grid">
-                        \${items.map(generarHTMLProducto).join('')}
+                        ${items.map(generarHTMLProducto).join('')}
                     </div>
                 </section>
-            \`;
+            `;
         });
 
         container.innerHTML = html;
@@ -278,7 +278,7 @@
                 const productId = Number(button.dataset.thumbnailProduct);
                 const index = Number(button.dataset.thumbnailIndex);
                 const image = state.productos.find(p => p.id === productId)?.imagenes[index];
-                const main = container.querySelector(\`[data-main-image="\${productId}"]\`);
+                const main = container.querySelector(`[data-main-image="${productId}"]`);
                 if (!image || !main) return;
                 main.src = image;
                 const viewer = button.closest('.product-card')?.querySelector('.product-media');
@@ -315,7 +315,7 @@
             state.busqueda = product.nombre.split(' ')[0];
             renderizarProductos();
             requestAnimationFrame(() => {
-                const card = document.getElementById(\`producto-\${productId}\`);
+                const card = document.getElementById(`producto-${productId}`);
                 if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
         });
@@ -390,7 +390,7 @@
 
         img.src = state.lightboxProducto.imagenes[state.lightboxIndex];
         img.alt = state.lightboxProducto.nombre;
-        counter.textContent = \`\${state.lightboxIndex + 1} / \${state.lightboxProducto.imagenes.length}\`;
+        counter.textContent = `${state.lightboxIndex + 1} / ${state.lightboxProducto.imagenes.length}`;
 
         const showControls = state.lightboxProducto.imagenes.length > 1;
         prev.hidden = !showControls;
@@ -425,17 +425,17 @@
     async function cargarProductos() {
         try {
             const response = await fetch('productos.json?v=vetfast-2', { cache: 'no-store' });
-            if (!response.ok) throw new Error(\`HTTP \${response.status}\`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
 
             const ids = new Set();
             data.forEach(producto => {
-                if (ids.has(producto.id)) throw new Error(\`ID duplicado: \${producto.id}\`);
+                if (ids.has(producto.id)) throw new Error(`ID duplicado: ${producto.id}`);
                 if (!producto.nombre || !producto.categoria || !Array.isArray(producto.imagenes) || producto.imagenes.length === 0) {
-                    throw new Error(\`Producto incompleto: \${producto.id}\`);
+                    throw new Error(`Producto incompleto: ${producto.id}`);
                 }
                 if (typeof producto.precio !== 'number' || producto.precio < 0) {
-                    throw new Error(\`Precio inválido: \${producto.id}\`);
+                    throw new Error(`Precio inválido: ${producto.id}`);
                 }
                 ids.add(producto.id);
             });
@@ -459,13 +459,13 @@
             console.error('No se pudo cargar el catálogo Vet Fast:', error);
             const container = $('#main-content');
             if (container) {
-                container.innerHTML = \`
+                container.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-icon"><i data-lucide="triangle-alert"></i></div>
                         <h3 class="font-title">No se pudo cargar el catálogo</h3>
                         <p>Recarga la página o intenta nuevamente más tarde.</p>
                     </div>
-                \`;
+                `;
                 lucide.createIcons();
             }
         }
