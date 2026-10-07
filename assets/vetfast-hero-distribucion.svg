@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Vet Fast — distribución de productos veterinarios</title>
+  <desc id="desc">Composición gráfica con productos del catálogo Vet Fast, elementos de cuidado de mascotas y despacho.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b5f9f"/>
+      <stop offset="58%" stop-color="#1767a6"/>
+      <stop offset="100%" stop-color="#0b8a69"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity=".05"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#001d35" flood-opacity=".28"/>
+    </filter>
+    <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#001d35" flood-opacity=".18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" rx="54" fill="url(#bg)"/>
+
+  <!-- Soft commercial graphic background -->
+  <circle cx="960" cy="120" r="190" fill="#ffffff" fill-opacity=".05"/>
+  <circle cx="1100" cy="760" r="260" fill="#68e1bb" fill-opacity=".10"/>
+  <path d="M0 715 C190 625 315 850 510 760 S850 610 1200 735 L1200 900 L0 900 Z" fill="#ffffff" fill-opacity=".08"/>
+  <path d="M0 770 C180 690 315 870 510 805 S870 670 1200 770" fill="none" stroke="#8be3cb" stroke-opacity=".30" stroke-width="4"/>
+
+  <!-- Paw accents -->
+  <g fill="#ffffff" fill-opacity=".12">
+    <ellipse cx="916" cy="170" rx="17" ry="25" transform="rotate(-25 916 170)"/>
+    <ellipse cx="952" cy="154" rx="17" ry="25" transform="rotate(0 952 154)"/>
+    <ellipse cx="988" cy="164" rx="17" ry="25" transform="rotate(23 988 164)"/>
+    <ellipse cx="1018" cy="192" rx="17" ry="25" transform="rotate(40 1018 192)"/>
+    <circle cx="970" cy="207" r="27"/>
+  </g>
+
+  <!-- Distribution/shipping carton -->
+  <g transform="translate(738 95)" filter="url(#smallShadow)">
+    <rect x="0" y="65" width="270" height="220" rx="24" fill="#e7eff5"/>
+    <path d="M0 95 L135 30 L270 95 L135 160 Z" fill="#f9fcfe"/>
+    <path d="M135 30 L135 160" stroke="#d1dce5" stroke-width="3"/>
+    <path d="M0 95 L135 160 L270 95" fill="none" stroke="#d1dce5" stroke-width="3"/>
+    <rect x="63" y="135" width="144" height="76" rx="18" fill="#ffffff"/>
+    <circle cx="135" cy="173" r="24" fill="#069c64" fill-opacity=".15"/>
+    <path d="M135 157 v32 M119 173 h32" stroke="#069c64" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <!-- Pet-care silhouette accents -->
+  <g fill="none" stroke="#ffffff" stroke-opacity=".27" stroke-width="4">
+    <path d="M1060 300 C1115 274 1160 295 1175 332 C1187 362 1170 382 1148 389 C1163 412 1150 443 1122 450 C1088 459 1067 430 1067 402 C1034 417 1005 400 1002 373 C1000 344 1027 313 1060 300 Z"/>
+    <path d="M1040 440 C1072 422 1112 426 1130 454"/>
+  </g>
+
+  <!-- Product cards built from actual Vet Fast catalog assets -->
+  <g transform="translate(95 250) rotate(-8 150 250)" filter="url(#shadow)">
+    <rect width="300" height="470" rx="28" fill="#ffffff" fill-opacity=".97"/>
+    <rect x="18" y="18" width="264" height="434" rx="20" fill="#f7fafc"/>
+    <image x="36" y="42" width="228" height="384"
+           preserveAspectRatio="xMidYMid meet"
+           href="assets/brav-1m-25.png"
+           xlink:href="assets/brav-1m-25.png"/>
+  </g>
+
+  <g transform="translate(455 205) rotate(4 155 250)" filter="url(#shadow)">
+    <rect width="310" height="490" rx="28" fill="#ffffff" fill-opacity=".97"/>
+    <rect x="18" y="18" width="274" height="454" rx="20" fill="#f7fafc"/>
+    <image x="39" y="46" width="232" height="400"
+           preserveAspectRatio="xMidYMid meet"
+           href="assets/brav-1m-100.png"
+           xlink:href="assets/brav-1m-100.png"/>
+  </g>
+
+  <g transform="translate(820 360) rotate(9 130 205)" filter="url(#shadow)">
+    <rect width="260" height="410" rx="26" fill="#ffffff" fill-opacity=".97"/>
+    <rect x="16" y="16" width="228" height="378" rx="19" fill="#f7fafc"/>
+    <image x="30" y="34" width="200" height="344"
+           preserveAspectRatio="xMidYMid meet"
+           href="assets/vl-cefavet-300.png"
+           xlink:href="assets/vl-cefavet-300.png"/>
+  </g>
+
+  <!-- Front desk / distribution base -->
+  <rect x="70" y="735" width="1060" height="40" rx="20" fill="#ffffff" fill-opacity=".12"/>
+  <circle cx="1035" cy="755" r="10" fill="#65d7b0"/>
+</svg>
