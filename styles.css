@@ -322,7 +322,7 @@ body {
 .section-title {
     margin: .55rem 0 0;
     color: var(--brand-900);
-    font-size: clamp(1.8rem, 2.8vw, 2.55rem);
+    font-size: clamp(1.75rem, 2.35vw, 2.25rem);
     font-weight: 900;
     line-height: 1.08;
     letter-spacing: -.035em;
@@ -596,17 +596,22 @@ body {
 }
 
 .catalog-main {
-    background: #fafcff;
+    background: #f7fafc;
+    border-top: 1px solid #eef2f7;
 }
 
-.catalog-main > .section-shell {
-    max-width: 72rem;
+.catalog-products-shell {
+    width: min(calc(100% - 2rem), 74rem);
+    margin: 0 auto;
+    padding: 2.75rem 0 5rem;
 }
 
 .catalog-section {
-    padding-top: 1.5rem;
+    padding: 0;
 }
-    padding: 1rem 0 3rem;
+
+.catalog-section + .catalog-section {
+    margin-top: 2.75rem;
 }
 
 .section-heading {
@@ -615,7 +620,7 @@ body {
     justify-content: space-between;
     gap: 1.5rem;
     margin-bottom: 1.5rem;
-    padding: 0 .15rem;
+    padding: 0;
 }
 
 .section-note {
@@ -640,7 +645,7 @@ body {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.6rem;
+    gap: 1.5rem;
     align-items: stretch;
 }
 
@@ -663,7 +668,7 @@ body {
 
 .product-media {
     position: relative;
-    height: 17.25rem;
+    height: 15.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -675,8 +680,8 @@ body {
 }
 
 .product-media > img {
-    width: 100%;
-    height: 100%;
+    width: 88%;
+    height: 88%;
     object-fit: contain;
     transition: transform .4s ease;
 }
@@ -1398,7 +1403,7 @@ body {
 @media (max-width: 1100px) {
     .quick-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
     .products-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .catalog-products-shell { width: min(100%, 68rem); }
+    .catalog-products-shell { width: min(calc(100% - 2rem), 64rem); }
 }
 
 @media (max-width: 900px) {
@@ -1415,8 +1420,10 @@ body {
 @media (max-width: 680px) {
     .section-shell { padding: 4rem 1rem; }
     .catalog-main { padding: 0 .75rem; }
-    .catalog-products-shell { width: 100%; padding-top: 1.5rem; }
-    .catalog-section { padding-bottom: 3rem; }
+    .catalog-products-shell { width: 100%; padding: 1.75rem 0 3rem; }
+    .catalog-section { padding-bottom: 0; }
+    .catalog-section + .catalog-section { margin-top: 2.25rem; }
+    .products-grid { gap: 1rem; }
     .quick-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .products-grid { grid-template-columns: 1fr; }
     .toolbar-top,
