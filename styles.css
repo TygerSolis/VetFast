@@ -68,6 +68,78 @@ body {
     min-height: 5rem;
 }
 
+.nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.8rem;
+    padding: 0 .8rem;
+    border-radius: .75rem;
+    color: #475569;
+    text-decoration: none;
+    transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: .8rem;
+    right: .8rem;
+    bottom: .35rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--brand-accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform .2s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+    color: var(--brand-900);
+    background: var(--brand-light);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.nav-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    border: 1px solid #d8f2e5;
+    border-radius: 999px;
+    background: #edf9f3;
+    color: #067a4f !important;
+    text-decoration: none;
+    font-size: .78rem;
+    font-weight: 900;
+    box-shadow: 0 6px 18px -14px rgba(6, 156, 100, .6);
+    transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.nav-whatsapp i {
+    width: 1rem;
+    height: 1rem;
+}
+
+.nav-whatsapp:hover,
+.nav-whatsapp:focus-visible {
+    background: var(--brand-accent) !important;
+    border-color: var(--brand-accent);
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -14px rgba(6, 156, 100, .7);
+    outline: none;
+}
+
 .brand-mark {
     display: flex;
     align-items: center;
@@ -527,7 +599,13 @@ body {
     background: #fafcff;
 }
 
+.catalog-main > .section-shell {
+    max-width: 72rem;
+}
+
 .catalog-section {
+    padding-top: 1.5rem;
+}
     padding: 1rem 0 3rem;
 }
 
@@ -561,7 +639,7 @@ body {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 1.2rem;
+    gap: 1.4rem;
 }
 
 .product-card {
@@ -583,7 +661,7 @@ body {
 
 .product-media {
     position: relative;
-    height: 18rem;
+    height: 16.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -683,7 +761,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 1.35rem;
+    padding: 1.15rem;
 }
 
 .product-tags {
@@ -1333,6 +1411,7 @@ body {
 
 @media (max-width: 680px) {
     .section-shell { padding: 4rem 1rem; }
+    .catalog-main > .section-shell { max-width: 100%; }
     .quick-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .products-grid { grid-template-columns: 1fr; }
     .toolbar-top,
