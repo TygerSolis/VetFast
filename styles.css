@@ -322,10 +322,10 @@ body {
 .section-title {
     margin: .55rem 0 0;
     color: var(--brand-900);
-    font-size: clamp(1.9rem, 3vw, 2.75rem);
+    font-size: clamp(1.8rem, 2.8vw, 2.55rem);
     font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -.03em;
+    line-height: 1.08;
+    letter-spacing: -.035em;
 }
 
 .section-copy {
@@ -613,12 +613,13 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.35rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 .15rem;
 }
 
 .section-note {
-    max-width: 48rem;
+    max-width: 42rem;
     margin: .55rem 0 0;
     color: #64748b;
     font-size: .88rem;
@@ -638,8 +639,9 @@ body {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 1.4rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.6rem;
+    align-items: stretch;
 }
 
 .product-card {
@@ -661,7 +663,7 @@ body {
 
 .product-media {
     position: relative;
-    height: 16.5rem;
+    height: 17.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -761,7 +763,7 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 1.15rem;
+    padding: 1.25rem;
 }
 
 .product-tags {
@@ -1396,6 +1398,7 @@ body {
 @media (max-width: 1100px) {
     .quick-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
     .products-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .catalog-products-shell { width: min(100%, 68rem); }
 }
 
 @media (max-width: 900px) {
@@ -1411,7 +1414,9 @@ body {
 
 @media (max-width: 680px) {
     .section-shell { padding: 4rem 1rem; }
-    .catalog-main > .section-shell { max-width: 100%; }
+    .catalog-main { padding: 0 .75rem; }
+    .catalog-products-shell { width: 100%; padding-top: 1.5rem; }
+    .catalog-section { padding-bottom: 3rem; }
     .quick-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .products-grid { grid-template-columns: 1fr; }
     .toolbar-top,
