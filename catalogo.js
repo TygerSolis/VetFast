@@ -218,7 +218,7 @@
 
     function renderizarProductos() {
         renderFilters();
-        const container = $('#main-content');
+        const container = $('#catalog-products');
         if (!container) return;
 
         const filtrados = obtenerProductosFiltrados();
@@ -457,7 +457,7 @@
             lucide.createIcons();
         } catch (error) {
             console.error('No se pudo cargar el catálogo Vet Fast:', error);
-            const container = $('#main-content');
+            const container = $('#catalog-products');
             if (container) {
                 container.innerHTML = `
                     <div class="empty-state">
