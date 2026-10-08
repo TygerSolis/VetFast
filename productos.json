@@ -7,7 +7,7 @@
     "presentacion": "1 COMP",
     "precio": 93.44,
     "imagenes": [
-      "assets/brav-112.png"
+      "assets/brav-112.webp"
     ],
     "descripcion": "Tableta masticable antipulgas y garrapatas de larga duración para perros pequeños."
   },
@@ -19,7 +19,7 @@
     "presentacion": "1 COMP",
     "precio": 99.57,
     "imagenes": [
-      "assets/brav-250.png"
+      "assets/brav-250.webp"
     ],
     "descripcion": "Tableta masticable antipulgas y garrapatas de larga duración para perros medianos."
   },
@@ -31,7 +31,7 @@
     "presentacion": "1 COMP",
     "precio": 105.71,
     "imagenes": [
-      "assets/brav-500.png"
+      "assets/brav-500.webp"
     ],
     "descripcion": "Tableta masticable antipulgas y garrapatas de larga duración para perros medianos-grandes."
   },
@@ -43,7 +43,7 @@
     "presentacion": "1 COMP",
     "precio": 136.4,
     "imagenes": [
-      "assets/brav-1000.png"
+      "assets/brav-1000.webp"
     ],
     "descripcion": "Tableta masticable antipulgas y garrapatas de larga duración para perros grandes."
   },
@@ -55,7 +55,7 @@
     "presentacion": "1 COMP",
     "precio": 171.99,
     "imagenes": [
-      "assets/brav-1400.png"
+      "assets/brav-1400.webp"
     ],
     "descripcion": "Tableta masticable antipulgas y garrapatas de larga duración para perros gigantes."
   },
@@ -67,7 +67,7 @@
     "presentacion": "3 TAB",
     "precio": 104,
     "imagenes": [
-      "assets/brav-1m-25.png"
+      "assets/brav-1m-25.webp"
     ],
     "descripcion": "Protección mensual en pack de 3 tabletas para perros muy pequeños."
   },
@@ -79,7 +79,7 @@
     "presentacion": "3 TAB",
     "precio": 109,
     "imagenes": [
-      "assets/brav-1m-50.png"
+      "assets/brav-1m-50.webp"
     ],
     "descripcion": "Protección mensual en pack de 3 tabletas para perros pequeños."
   },
@@ -91,7 +91,7 @@
     "presentacion": "3 TAB",
     "precio": 116,
     "imagenes": [
-      "assets/brav-1m-100.png"
+      "assets/brav-1m-100.webp"
     ],
     "descripcion": "Protección mensual en pack de 3 tabletas para perros medianos."
   },
@@ -103,7 +103,7 @@
     "presentacion": "3 TAB",
     "precio": 124,
     "imagenes": [
-      "assets/brav-1m-200.png"
+      "assets/brav-1m-200.webp"
     ],
     "descripcion": "Protección mensual en pack de 3 tabletas para perros medianos-grandes."
   },
@@ -115,7 +115,7 @@
     "presentacion": "3 TAB",
     "precio": 159,
     "imagenes": [
-      "assets/brav-1m-400.png"
+      "assets/brav-1m-400.webp"
     ],
     "descripcion": "Protección mensual en pack de 3 tabletas para perros grandes."
   },
@@ -127,7 +127,7 @@
     "presentacion": "3 TAB",
     "precio": 201,
     "imagenes": [
-      "assets/brav-1m-600.png"
+      "assets/brav-1m-600.webp"
     ],
     "descripcion": "Protección mensual en pack de 3 tabletas para perros gigantes."
   },
@@ -139,7 +139,7 @@
     "presentacion": "SPOT ON",
     "precio": 105.28,
     "imagenes": [
-      "assets/brav-plus-p.png"
+      "assets/brav-plus-p.webp"
     ],
     "descripcion": "Solución tópica (pipeta) para gatos. Protege contra pulgas, garrapatas y parásitos internos."
   },
@@ -151,7 +151,7 @@
     "presentacion": "SPOT ON",
     "precio": 112.88,
     "imagenes": [
-      "assets/brav-plus-m.png"
+      "assets/brav-plus-m.webp"
     ],
     "descripcion": "Solución tópica (pipeta) para gatos medianos. Protege contra pulgas, garrapatas y parásitos internos."
   },
@@ -163,7 +163,7 @@
     "presentacion": "SPOT ON",
     "precio": 120.69,
     "imagenes": [
-      "assets/brav-plus-g.png"
+      "assets/brav-plus-g.webp"
     ],
     "descripcion": "Solución tópica (pipeta) para gatos grandes. Protege contra pulgas, garrapatas y parásitos internos."
   },
@@ -175,7 +175,7 @@
     "presentacion": "40 TAB",
     "precio": 19.93,
     "imagenes": [
-      "assets/vl-alerflam.png"
+      "assets/vl-alerflam.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -187,7 +187,7 @@
     "presentacion": "32 TAB",
     "precio": 33.36,
     "imagenes": [
-      "assets/vl-bactrina.png"
+      "assets/vl-bactrina.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -199,7 +199,7 @@
     "presentacion": "32 TAB",
     "precio": 27.74,
     "imagenes": [
-      "assets/vl-cefavet-300.png"
+      "assets/vl-cefavet-300.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -211,7 +211,7 @@
     "presentacion": "32 TAB",
     "precio": 46.64,
     "imagenes": [
-      "assets/vl-cefavet-600.png"
+      "assets/vl-cefavet-600.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -223,7 +223,7 @@
     "presentacion": "1 UND",
     "precio": 18.98,
     "imagenes": [
-      "assets/vl-cicatrivet-25.png"
+      "assets/vl-cicatrivet-25.webp"
     ],
     "descripcion": "Ungüento/crema cicatrizante. Consulte a su médico veterinario para su correcta aplicación."
   },
@@ -235,7 +235,7 @@
     "presentacion": "40 TAB",
     "precio": 70.67,
     "imagenes": [
-      "assets/vl-clamovet-250.png"
+      "assets/vl-clamovet-250.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -247,7 +247,7 @@
     "presentacion": "32 TAB",
     "precio": 33.76,
     "imagenes": [
-      "assets/vl-clindavet-75.png"
+      "assets/vl-clindavet-75.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -259,7 +259,7 @@
     "presentacion": "32 TAB",
     "precio": 58.14,
     "imagenes": [
-      "assets/vl-clindavet-150.png"
+      "assets/vl-clindavet-150.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -271,7 +271,7 @@
     "presentacion": "PACK 6",
     "precio": 19.94,
     "imagenes": [
-      "assets/vl-dermasep-120.png"
+      "assets/vl-dermasep-120.webp"
     ],
     "descripcion": "Producto dermatológico con Aloe Vera. Consulte a su médico veterinario para su uso."
   },
@@ -283,7 +283,7 @@
     "presentacion": "32 TAB",
     "precio": 21.56,
     "imagenes": [
-      "assets/vl-doxitel-100.png"
+      "assets/vl-doxitel-100.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -295,7 +295,7 @@
     "presentacion": "32 TAB",
     "precio": 35.96,
     "imagenes": [
-      "assets/vl-doxitel-200.png"
+      "assets/vl-doxitel-200.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -307,7 +307,7 @@
     "presentacion": "40 TAB",
     "precio": 18.98,
     "imagenes": [
-      "assets/vl-floxatel-50.png"
+      "assets/vl-floxatel-50.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -319,7 +319,7 @@
     "presentacion": "40 TAB",
     "precio": 31.08,
     "imagenes": [
-      "assets/vl-floxatel-100.png"
+      "assets/vl-floxatel-100.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -331,7 +331,7 @@
     "presentacion": "40 TAB",
     "precio": 35.28,
     "imagenes": [
-      "assets/vl-gastropet-10.png"
+      "assets/vl-gastropet-10.webp"
     ],
     "descripcion": "Protector gástrico de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -343,7 +343,7 @@
     "presentacion": "40 TAB",
     "precio": 36.3,
     "imagenes": [
-      "assets/vl-hepatiopet.png"
+      "assets/vl-hepatiopet.webp"
     ],
     "descripcion": "Protector hepático de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -355,7 +355,7 @@
     "presentacion": "32 TAB",
     "precio": 25.4,
     "imagenes": [
-      "assets/vl-higacure.png"
+      "assets/vl-higacure.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -367,7 +367,7 @@
     "presentacion": "40 TAB",
     "precio": 35.96,
     "imagenes": [
-      "assets/vl-ketovet-10.png"
+      "assets/vl-ketovet-10.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -379,7 +379,7 @@
     "presentacion": "40 TAB",
     "precio": 59.2,
     "imagenes": [
-      "assets/vl-ketovet-20.png"
+      "assets/vl-ketovet-20.webp"
     ],
     "descripcion": "Medicamento de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -391,7 +391,7 @@
     "presentacion": "1 UND",
     "precio": 18.9,
     "imagenes": [
-      "assets/vl-laxnatur-22.png"
+      "assets/vl-laxnatur-22.webp"
     ],
     "descripcion": "Laxante de uso veterinario. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -403,7 +403,7 @@
     "presentacion": "40 TABS",
     "precio": 18.57,
     "imagenes": [
-      "assets/vl-meloxivet-1.png"
+      "assets/vl-meloxivet-1.webp"
     ],
     "descripcion": "Antiinflamatorio de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
@@ -415,7 +415,7 @@
     "presentacion": "40 TABS",
     "precio": 47.81,
     "imagenes": [
-      "assets/vl-meloxivet-4.png"
+      "assets/vl-meloxivet-4.webp"
     ],
     "descripcion": "Antiinflamatorio de la línea Veterline. Consulte a su médico veterinario para la dosis adecuada."
   },
