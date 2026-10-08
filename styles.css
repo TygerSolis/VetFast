@@ -323,45 +323,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 3rem;
+    border-radius: 2.5rem;
     background: rgba(255,255,255,.08);
     border: 1px solid rgba(255,255,255,.2);
-    box-shadow: var(--shadow-float);
+    box-shadow: 0 24px 55px -28px rgba(0, 0, 0, .42);
     overflow: hidden;
 }
 
-.hero-product::before {
-    display: none;
+.hero-product::after {
+    content: "";
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: -1px;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(101,215,176,0), rgba(101,215,176,.95), rgba(101,215,176,0));
+    opacity: .9;
 }
 
 .hero-product img {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-}
-
-.hero-chip {
-    position: absolute;
-    left: -1rem;
-    bottom: 1.25rem;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    padding: .9rem 1rem;
-    border-radius: 1.15rem;
-    background: #fff;
-    color: var(--brand-900);
-    box-shadow: var(--shadow-soft);
-}
-
-.hero-chip i {
-    width: 1.2rem;
-    height: 1.2rem;
-    color: var(--brand-accent);
 }
 
 .section-shell {
