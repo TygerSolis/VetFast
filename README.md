@@ -79,3 +79,13 @@ This project demonstrates how a lightweight front-end application can turn a sta
 
 ---
 Built by **Itamar Solis**
+
+## Performance tooling
+
+A reusable optimization script is included at `scripts/optimize_images.py`. It converts referenced PNG assets to WebP and updates repository references, allowing the catalog to keep modern image delivery without rebuilding the front end.
+
+## Portfolio Focus
+
+**Business problem:** present a product catalog in a fast, searchable format that turns product discovery into a direct sales conversation.
+
+**Engineering focus:** structured product data, client-side state management, responsive UI, SEO, accessibility and WhatsApp conversion.
