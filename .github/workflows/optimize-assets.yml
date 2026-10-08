@@ -4,7 +4,10 @@ on:
   push:
     paths:
       - ".optimization-trigger"
-      - "scripts/optimize_images.py"
+
+concurrency:
+  group: vetfast-asset-optimization
+  cancel-in-progress: true
 
 permissions:
   contents: write
