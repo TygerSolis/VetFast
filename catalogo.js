@@ -111,7 +111,7 @@
         container.innerHTML = destacados.map(producto => `
             <article class="featured-card">
                 <div class="featured-media">
-                    <img src="${escapeHtml(producto.imagenes[0])}" alt="${escapeHtml(producto.nombre)}" loading="lazy" decoding="async">
+                    <img src="${escapeHtml(producto.imagenes[0])}" alt="${escapeHtml(producto.nombre)}" width="700" height="700" loading="lazy" decoding="async">
                     <span class="featured-badge"><i data-lucide="paw-print"></i> Selección Vet Fast</span>
                 </div>
                 <div class="featured-card-content">
@@ -162,6 +162,8 @@
                     <img
                         data-main-image="${producto.id}"
                         src="${escapeHtml(imagenes[0] || '')}"
+                        width="700"
+                        height="700"
                         alt="${escapeHtml(producto.nombre)}"
                         loading="lazy"
                         decoding="async"
@@ -281,6 +283,8 @@
                 const main = container.querySelector(`[data-main-image="${productId}"]`);
                 if (!image || !main) return;
                 main.src = image;
+                main.width = 700;
+                main.height = 700;
                 const viewer = button.closest('.product-card')?.querySelector('.product-media');
                 if (viewer) viewer.dataset.lightboxIndex = String(index);
                 $$(' .product-thumb', button.parentElement).forEach(item => item.classList.remove('is-active'));
@@ -389,6 +393,7 @@
         if (!img || !counter || !prev || !next || !state.lightboxProducto) return;
 
         img.src = state.lightboxProducto.imagenes[state.lightboxIndex];
+        img.decoding = "async";
         img.alt = state.lightboxProducto.nombre;
         counter.textContent = `${state.lightboxIndex + 1} / ${state.lightboxProducto.imagenes.length}`;
 
