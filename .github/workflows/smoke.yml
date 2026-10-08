@@ -1,0 +1,12 @@
+name: Smoke test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GitHub Actions runner is available"
